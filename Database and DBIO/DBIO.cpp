@@ -233,11 +233,11 @@ static int callback_charSpells(void *NotUsed, int argc, char **argv, char **azCo
 	return 0;
 }
 
-static int callback_charItems(void *NotUsed, int argc, char **argv, char **azColName){
+static int callback_charOwned(void *NotUsed, int argc, char **argv, char **azColName){
 
 	int lcv = 0;
 	bool found = false;
-	Item i;
+	owns o;
 
 	while (!found && lcv < characters_V.size())
 	{
@@ -248,8 +248,16 @@ static int callback_charItems(void *NotUsed, int argc, char **argv, char **azCol
 	}
 	if(found)
 	{
-		i.SetName(argv[1]);
-		characters_V[lcv].GetItems().push_back(i);
+		o.type == argv[1];
+
+		if (argv[1] == "Item")
+			o.item.SetName(argv[2]);
+		else if (argv[1] == "Armor")
+			o.armor.SetName(argv[2]);
+		else if (argv[1] == "Weapon")
+			o.weapon.SetName(argv[2]);
+		
+		characters_V[lcv].GetOwned().push_back(o);
 	}
 	return 0;
 }
@@ -368,55 +376,65 @@ static int callback_classFeatures(void *NotUsed, int argc, char **argv, char **a
 	return 0;
 }
 
+bool CheckMatch(int lcv, string s)
+{
+	if (classes_V[lcv].GetName() == "Sorcerer"	&&	s == "Sor"			)	return true;
+	if (classes_V[lcv].GetName() == "Wizard"	&&	s == "Wiz"			)	return true;
+	if (classes_V[lcv].GetName() == "Ranger"	&&	s == "Rgr"			)	return true;
+	if (classes_V[lcv].GetName() == "Bard"		&&	s == "Brd"			)	return true;
+	if (classes_V[lcv].GetName() == "Druid"		&&	s == "Drd"			)	return true;
+	if (classes_V[lcv].GetName() == "Paladin"	&&	s == "Pal"			)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Clr"			)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Air"			)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Animal"		)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Chaos"		)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Death"		)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Destruction"	)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Earth"		)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Evil"			)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Fire"			)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Good"			)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Healing"		)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Knowledge"	)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Law"			)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Luck"			)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Magic"		)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Plant"		)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Protection"	)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Strength"		)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Sun"			)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Travel"		)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Trickery"		)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "War"			)	return true;
+	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Water"		)	return true;
+
+	return false;
+
+}
+
 static int callback_classLearnsSpells(void *NotUsed, int argc, char **argv, char **azColName){
 
 	int lcv = 0;
 	bool found = false;
 	LearnsSpells l;
+	string s;
 
 	while (!found && lcv < classes_V.size())
 	{
-		if (classes_V[lcv].GetName() == "Sorcerer"	&&	argv[1] == "Sor"			||
-			classes_V[lcv].GetName() == "Wizard"	&&	argv[1] == "Wiz"			||
-			classes_V[lcv].GetName() == "Ranger"	&&	argv[1] == "Rgr"			||
-			classes_V[lcv].GetName() == "Bard"		&&	argv[1] == "Brd"			||
-			classes_V[lcv].GetName() == "Druid"		&&	argv[1] == "Drd"			||
-			classes_V[lcv].GetName() == "Paladin"	&&	argv[1] == "Pal"			||
-			classes_V[lcv].GetName() == "Cleric"	&&	argv[1] == "Clr"			||
-														argv[1] == "Air"			||
-														argv[1] == "Animal"			||
-														argv[1] == "Chaos"			||
-														argv[1] == "Death"			||
-														argv[1] == "Destruction"	||
-														argv[1] == "Earth"			||
-														argv[1] == "Evil"			||
-														argv[1] == "Fire"			||
-														argv[1] == "Good"			||
-														argv[1] == "Healing"		||
-														argv[1]	== "Knowledge"		||
-														argv[1] == "Law"			||
-														argv[1] == "Luck"			||
-														argv[1] == "Magic"			||
-														argv[1] == "Plant"			||
-														argv[1]	== "Protection"		||
-														argv[1] == "Strength"		||
-														argv[1] == "Sun"			||
-														argv[1] == "Travel"			||
-														argv[1]	== "Trickery"		||
-														argv[1] == "War"			||
-														argv[1] == "Water"
-			)
+		s = argv[1];
+		if (CheckMatch(lcv, s))
 			found = true;
 		else
 			lcv++;
 	}
 	if(found)
 	{
+		//l = new LearnsSpells;
 		l.className = argv[1];
 		l.s.SetName(argv[0]);
 		l.level = stoi(argv[2]);
 		
-		classes_V[lcv].GetSpellsCanLearn().push_back(l);
+		classes_V[lcv].AddSpellCanLearn(l);
 
 	}
 	return 0;
@@ -611,8 +629,8 @@ vector<Character>* LoadCharacter()
 					if (sqlite3_exec(db, query_s.c_str(), callback_charSpells, 0, &zErrMsg) == SQLITE_OK){
 						query_s = "SELECT * FROM `Cosmetics`;";
 						if (sqlite3_exec(db, query_s.c_str(), callback_charCosmetics, 0, &zErrMsg) == SQLITE_OK){
-							query_s = "SELECT * FROM `Items_Purchased`;";
-							if (sqlite3_exec(db, query_s.c_str(), callback_charItems, 0, &zErrMsg) == SQLITE_OK){
+							query_s = "SELECT * FROM `Owned`;";
+							if (sqlite3_exec(db, query_s.c_str(), callback_charOwned, 0, &zErrMsg) == SQLITE_OK){
 								query_s = "SELECT * FROM `AbilityScore`;";
 								if (sqlite3_exec(db, query_s.c_str(), callback_charAbilityScore, 0, &zErrMsg) == SQLITE_OK)
 									return ptr;
@@ -633,7 +651,7 @@ vector<Class>* LoadClasses()
 		if (sqlite3_exec(db, query_s.c_str(), callback_classFeatures, 0, &zErrMsg) == SQLITE_OK){
 			query_s = "SELECT * FROM `Spell_Learned_At`;";
 			if (sqlite3_exec(db, query_s.c_str(), callback_classLearnsSpells, 0, &zErrMsg) == SQLITE_OK)
-			return ptr;
+				return ptr;
 		}}
 
 	return NULL;
@@ -1310,7 +1328,7 @@ bool AddToCEAMS(Character c)
 		query_s = "INSERT INTO `Character_Feats` (`Character_CharacterID`, `Feats_FeatName`) VALUES ('";
 		query_s += c.GetID();						query_s += "', '";
 		query_s += c.GetCharFeats()[i].GetName();	query_s += "');";
-		itr++; i++;
+		itr2++; i++;
 		
 		while (itr2 != c.GetCharFeats().end())
 		{
@@ -1319,7 +1337,7 @@ bool AddToCEAMS(Character c)
 			query_s = "INSERT INTO `Character_Feats` (`Character_CharacterID`, `Feats_FeatName`) VALUES ('";
 			query_s += c.GetID();						query_s += "', '";
 			query_s += c.GetCharFeats()[i].GetName();	query_s += "');";
-			itr++; i++;
+			itr2++; i++;
 		}
 
 		vector<Skill>::iterator itr3 = c.GetCharSkills().begin();
@@ -1327,7 +1345,7 @@ bool AddToCEAMS(Character c)
 		query_s = "INSERT INTO `Character_Skills` (`Character_CharacterID`, `Skills_SkillName`) VALUES ('";
 		query_s += c.GetID();						query_s += "', '";
 		query_s += c.GetCharSkills()[i].GetName();	query_s += "');";
-		itr++; i++;
+		itr3++; i++;
 		
 		while (itr3 != c.GetCharSkills().end())
 		{
@@ -1336,7 +1354,7 @@ bool AddToCEAMS(Character c)
 			query_s = "INSERT INTO `Character_Skills` (`Character_CharacterID`, `Skills_SkillName`) VALUES ('";
 			query_s += c.GetID();						query_s += "', '";
 			query_s += c.GetCharSkills()[i].GetName();	query_s += "');";
-			itr++; i++;
+			itr3++; i++;
 		
 		}
 
@@ -1345,7 +1363,7 @@ bool AddToCEAMS(Character c)
 		query_s = "INSERT INTO `Character_Spells` (`Character_CharacterID`, `Spells_SpellName`) VALUES ('";
 		query_s += c.GetID();						query_s += "', '";
 		query_s += c.GetCharSpells()[i].GetName();	query_s += "');";
-		itr++; i++;
+		itr4++; i++;
 		
 		while (itr4 != c.GetCharSpells().end())
 		{
@@ -1354,10 +1372,44 @@ bool AddToCEAMS(Character c)
 			query_s = "INSERT INTO `Character_Spells` (`Character_CharacterID`, `Spells_SpellName`) VALUES ('";
 			query_s += c.GetID();						query_s += "', '";
 			query_s += c.GetCharSpells()[i].GetName();	query_s += "');";
-			itr++; i++;
+			itr4++; i++;
 		
 		}
 		return true;
+
+		vector<owns>::iterator itr5 = c.GetOwned().begin();
+		i = 0;
+		query_s = "INSERT INTO `Owned` (`Character_CharacterID`, `OwnedType`, `OwnedName`) VALUES ('";
+		query_s += c.GetID();						query_s += "', '";
+		query_s += c.GetOwned()[i].type;			query_s += "', '";
+		if (c.GetOwned()[i].type == "Armor")
+			query_s += c.GetOwned()[i].armor.GetName();
+		else if (c.GetOwned()[i].type == "Item")
+			query_s += c.GetOwned()[i].item.GetName();
+		else if (c.GetOwned()[i].type == "Weapon")
+			query_s += c.GetOwned()[i].weapon.GetName();
+		
+		query_s += "');";
+		itr5++; i++;
+		
+		while (itr5 != c.GetOwned().end())
+		{
+			if (sqlite3_exec(db, query_s.c_str(), callback, 0, &zErrMsg) != SQLITE_OK)
+				return false;
+			query_s = "INSERT INTO `Owned` (`Character_CharacterID`, `OwnedType`, `OwnedName`) VALUES ('";
+			query_s += c.GetID();						query_s += "', '";
+			query_s += c.GetOwned()[i].type;			query_s += "', '";
+			if (c.GetOwned()[i].type == "Armor")
+				query_s += c.GetOwned()[i].armor.GetName();
+			else if (c.GetOwned()[i].type == "Item")
+				query_s += c.GetOwned()[i].item.GetName();
+			else if (c.GetOwned()[i].type == "Weapon")
+				query_s += c.GetOwned()[i].weapon.GetName();
+		
+			query_s += "');";
+			itr5++; i++;
+		
+		}
 	}
 	else
 		cout << "ERR: Problem connecting to Database." << endl;
@@ -1381,6 +1433,11 @@ bool RemoveFromCEAMS(Character c)
 		return false;
 
 	query_s = "DELETE FROM `Character_Class` WHERE `CharacterID` = '";
+	query_s = c.GetID();	query_s += "');";
+	if (sqlite3_exec(db, query_s.c_str(), callback, 0, &zErrMsg) != SQLITE_OK)
+		return false;
+
+	query_s = "DELETE FROM `Owned` WHERE `CharacterID` = '";
 	query_s = c.GetID();	query_s += "');";
 	if (sqlite3_exec(db, query_s.c_str(), callback, 0, &zErrMsg) != SQLITE_OK)
 		return false;

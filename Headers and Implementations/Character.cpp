@@ -4,22 +4,60 @@
 
 using namespace std;
 
-void Character::CompleteItems(vector<Item> v)
+Character::Character()
+{
+	charisma = 0;
+	constitution = 0;
+	dexterity = 0;
+	intelligence = 0;
+	strength = 0;
+	wisdom = 0;
+}
+
+void Character::CompleteOwned(vector<Item> it, vector<Armor> ar, vector<Weapon> we)
 {
 	int i = 0, j = 0; //Iterators for each vector
 	bool done = false; //Flag
-	while (i < GetItems().size())
+	int maxSize;
+
+	if (it.size() > ar.size())
 	{
-		done = false; //Reset flag for new item in char items vector.
-		j = 0; //Reset itr2
-		while (!done && j < v.size()) 
+		if (it.size() > we.size())
+			maxSize = it.size();
+		else
+			maxSize = we.size();
+	}
+	else
+	{
+		if (ar.size() > we.size())
+			maxSize = ar.size();
+		else
+			maxSize = we.size();
+	}
+
+	while (i < GetOwned().size())
+	{
+		done = false; 
+		j = 0; 
+
+		while (j < maxSize) 
 		{
-			if (GetItems()[i].GetName() == v[j].GetName()) //Find match by name
+			if (GetOwned()[i].type == "Armor" && GetOwned()[i].armor.GetName() == ar[j].GetName()) 
 			{
-				GetItems()[i] = v[j]; //Flesh out data for that item.
+				GetOwned()[i].armor = ar[j]; 
 				done = true;
 			}
-			else 
+			else if (GetOwned()[i].type == "Item" && GetOwned()[i].item.GetName() == it[j].GetName())
+			{
+				GetOwned()[i].item = it[j];
+				done = true;
+			}
+			else if (GetOwned()[i].type == "Weapon" && GetOwned()[i].weapon.GetName() == we[j].GetName())
+			{
+				GetOwned()[i].weapon = we[j];
+				done = true;
+			}
+			else
 				j++;
 		}
 

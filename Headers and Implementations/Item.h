@@ -29,11 +29,11 @@ class Armor : public Item
 {
 public:
 	string GetSpeedHuman()					{return speedHuman;}
-	void SetSpeedHuman(string i)				{speedHuman = i;}
+	void SetSpeedHuman(string i)			{speedHuman = i;}
 	string GetSpeedDwarf()					{return speedDwarf;}
-	void SetSpeedDwarf(string i)				{speedDwarf = i;}
+	void SetSpeedDwarf(string i)			{speedDwarf = i;}
 	string GetMaxDexBonus()					{return maxDexBonus;}
-	void SetMaxDexBonus(string i)				{maxDexBonus = i;}
+	void SetMaxDexBonus(string i)			{maxDexBonus = i;}
 	string GetArcaneSpellFailure()			{return arcaneSpellFailure;}
 	void SetArcaneSpellFailure(string d)	{arcaneSpellFailure = d;}
 	string GetArmorCheckPenalty()			{return armorCheckPenalty;}

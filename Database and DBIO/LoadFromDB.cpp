@@ -72,10 +72,25 @@ int main()
 	{
 		itr->CompleteClasses(*cl_V);
 		itr->CompleteFeats(*fe_V);
-		itr->CompleteItems(*it_V);
+		itr->CompleteOwned(*it_V, *ar_V, *we_V);
 		itr->CompleteSkills(*sk_V);
 		itr->CompleteSpells(*sp_V);
+		itr++;
 	
+	}
+
+	vector<Class>::iterator itr2 = cl_V->begin();
+	while (itr2 != cl_V->end())
+	{
+		itr2->CompleteSpellsCanLearn(*sp_V);
+		itr2++;
+	}
+
+	vector<Feat>::iterator itr3 = fe_V->begin();
+	while (itr3 != fe_V->end())
+	{
+		itr3->CompletePrereqs(*fe_V);
+		itr3++;
 	}
 
 	t2 = clock();

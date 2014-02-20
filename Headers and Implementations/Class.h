@@ -58,8 +58,10 @@ public:
 	//void SetStartingPackages(vector<Character> v)	{startingPackages = v;}
 	string GetReccomendedAlignments()				{return reccomendedAlignments;}
 	void SetReccomendedAlignments(string v)			{reccomendedAlignments = v;}
+
 	vector<LearnsSpells> GetSpellsCanLearn()		{return spellsCanLearn;}
 	void SetSpellsCanLearn(vector<LearnsSpells> v)	{spellsCanLearn = v;}
+	void AddSpellCanLearn(LearnsSpells l)			{spellsCanLearn.push_back(l);}
 
 	void CompleteSpellsCanLearn(vector<Spell>);
 

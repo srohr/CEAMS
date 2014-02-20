@@ -11,9 +11,18 @@
 
 using namespace std;
 
+struct owns{
+	string type;
+	Item item;
+	Weapon weapon;
+	Armor armor;
+};
+
 class Character
 {
 public:
+	Character();
+
 	int GetID()								{return ID;}
 	void SetID_DO_NOT_USE(int i)			{ID = i;}
 	bool GetIsStartingPackage()				{return isStartingPackage;}
@@ -26,8 +35,8 @@ public:
 	void SetAlignment(string a)				{alignment = a;}
 	string GetReligion()					{return religion;}
 	void SetReligion (string s)				{religion = s;}
-	vector<Item> GetItems()					{return items;}
-	void SetItems(vector<Item> v)			{items = v;}
+	vector<owns> GetOwned()					{return owned;}
+	void SetOwned(vector<owns> v)			{owned = v;}
 	double GetGold()						{return gold;}
 	void SetGold(double i)					{gold = i;}
 	int GetMaxHealth()						{return maxHealth;}
@@ -78,12 +87,12 @@ public:
 	string GetBio()							{return bio;}
 	void SetBio(string s)					{bio = s;}
 
-	void CompleteItems(vector<Item>);
+	void CompleteOwned(vector<Item>, vector<Armor>, vector<Weapon>);
 	void CompleteFeats(vector<Feat>);
 	void CompleteSkills(vector<Skill>);
 	void CompleteSpells(vector<Spell>);
 	void CompleteClasses(vector<Class>);
-
+	
 private:
 	bool isStartingPackage;
 	string name;
@@ -91,7 +100,7 @@ private:
 	string alignment;
 	string religion;
 	string bio;
-	vector<Item> items;
+	vector<owns> owned;
 
 	vector<Class> charClasses;
 	vector<Feat> charFeats;
