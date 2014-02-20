@@ -20,7 +20,6 @@ char *zErrMsg = 0;
 sqlite3 *db; //DB object, used to manipulate DB.
 int rc = sqlite3_open(dbName, &db); //Connect to DB.
 
-int loc; //Neccessary global counter to make callbacks work.
 
 vector<Spell> spells_V; //Global vectors to store values. 
 vector<Skill> skills_V;
@@ -34,6 +33,8 @@ vector<Character> characters_V;
 vector<Alignment> alignments_V;
 vector<Religion> religions_V;
 
+
+
 static int callback(void *NotUsed, int argc, char **argv, char **azColName){
    int i;
    for(i=0; i<argc; i++){
@@ -44,56 +45,71 @@ static int callback(void *NotUsed, int argc, char **argv, char **azColName){
 }
 
 static int callback_spell(void *NotUsed, int argc, char **argv, char **azColName){
-	spells_V[loc].SetName(argv[0]);				
-	spells_V[loc].SetType(argv[1]);			
-	spells_V[loc].SetSavingThrow(argv[2]);		
-	spells_V[loc].SetSpellResistance(argv[3]);	
-	spells_V[loc].SetEffect(argv[4]);				
-	spells_V[loc].SetComponenets(argv[5]);
-	spells_V[loc].SetCastingTime(argv[6]);
-	spells_V[loc].SetRange(argv[7]);
-	spells_V[loc].SetTarget(argv[8]);
-	spells_V[loc].SetDuration(argv[9]);
-	spells_V[loc].SetDescription(argv[10]);
+	Spell s;
+
+	s.SetName(argv[0]);				
+	s.SetType(argv[1]);			
+	s.SetSavingThrow(argv[2]);		
+	s.SetSpellResistance(argv[3]);	
+	s.SetEffect(argv[4]);				
+	s.SetComponenets(argv[5]);
+	s.SetCastingTime(argv[6]);
+	s.SetRange(argv[7]);
+	s.SetTarget(argv[8]);
+	s.SetDuration(argv[9]);
+	s.SetDescription(argv[10]);
 		
-	loc++;
+	spells_V.push_back(s);
 	return 0;
 }
 
 static int callback_skill(void *NotUsed, int argc, char **argv, char **azColName){
-	skills_V[loc].SetName(argv[0]);					
-	skills_V[loc].SetAction(argv[1]);
-	skills_V[loc].SetKeyAbility(argv[2]);
-	skills_V[loc].SetCheck(argv[3]);
-	skills_V[loc].SetSynergy(argv[4]);
-	skills_V[loc].SetUntrained(argv[5]);
-	skills_V[loc].SetTryAgain(argv[6]);
-	skills_V[loc].SetRestriction(argv[7]);
-	skills_V[loc].SetArmorCheck(argv[8]);
-	skills_V[loc].SetTrainedOnly(stoi(argv[9]));
-	skills_V[loc].SetSpecial(argv[10]);
-	skills_V[loc].SetDescription(argv[11]);
+	Skill s;
+	
+	s.SetName(argv[0]);					
+	s.SetAction(argv[1]);
+	s.SetKeyAbility(argv[2]);
+	s.SetCheck(argv[3]);
+	s.SetSynergy(argv[4]);
+	s.SetUntrained(argv[5]);
+	s.SetTryAgain(argv[6]);
+	s.SetRestriction(argv[7]);
+	s.SetArmorCheck(argv[8]);
+	
+	if(argv[9] == "TRUE")
+		s.SetTrainedOnly(true);
+	else
+		s.SetTrainedOnly(false);
 
-	loc++;
+	s.SetSpecial(argv[10]);
+	s.SetDescription(argv[11]);
+
+	skills_V.push_back(s);
+
 	return 0;
 }
 
 static int callback_alignment(void *NotUsed, int argc, char **argv, char **azColName){
-	alignments_V[loc].SetAlignment(argv[0]);
-	alignments_V[loc].SetDescription(argv[1]);
+	Alignment a;
 
-	loc++;
+	a.SetAlignment(argv[0]);
+	a.SetDescription(argv[1]);
+
+	alignments_V.push_back(a);
+
 	return 0;
 }
 
 static int callback_races(void *NotUsed, int argc, char **argv, char **azColName){
-	races_V[loc].SetRaceName(argv[0]);
-	races_V[loc].SetPhysic(argv[1]);
-	races_V[loc].SetReccomendedClass(argv[2]);
-	races_V[loc].SetSize(argv[3]);
-	races_V[loc].SetSpeed(argv[4]);
+	Race r;
 
-	loc++;
+	r.SetRaceName(argv[0]);
+	r.SetPhysic(argv[1]);
+	r.SetReccomendedClass(argv[2]);
+	r.SetSize(argv[3]);
+	r.SetSpeed(argv[4]);
+
+	races_V.push_back(r);
 	return 0;
 }
 
@@ -140,34 +156,38 @@ static int callback_raceTraits(void *NotUsed, int argc, char **argv, char **azCo
 }
 
 static int callback_character(void *NotUsed, int argc, char **argv, char **azColName){
-	characters_V[loc].SetID_DO_NOT_USE(stoi(argv[0]));
-	characters_V[loc].SetName(argv[1]);
-	characters_V[loc].SetRace(argv[2]);
-	characters_V[loc].SetAlignment(argv[3]);
-	characters_V[loc].SetReligion(argv[4]);
-	characters_V[loc].SetGold(stoi(argv[5]));
-	characters_V[loc].SetArmorClass(argv[6]);
-	characters_V[loc].SetSavingThrow(argv[7]);
-	characters_V[loc].SetAttackBonus(stoi(argv[8]));
-	characters_V[loc].SetMaxHealth(stoi(argv[9]));
-	characters_V[loc].SetHealth(stoi(argv[9]));
-	characters_V[loc].SetInitiative(stoi(argv[10]));
-	characters_V[loc].SetAvailableSkillPoints(stoi(argv[11]));
-	characters_V[loc].SetTotalSkillPoints(stoi(argv[12]));
-	characters_V[loc].SetBio(argv[13]);
-	loc++;
+	Character c;
 
+	c.SetID_DO_NOT_USE(stoi(argv[0]));
+	c.SetName(argv[1]);
+	c.SetRace(argv[2]);
+	c.SetAlignment(argv[3]);
+	c.SetReligion(argv[4]);
+	c.SetGold(stoi(argv[5]));
+	c.SetArmorClass(argv[6]);
+	c.SetSavingThrow(argv[7]);
+	c.SetAttackBonus(stoi(argv[8]));
+	c.SetMaxHealth(stoi(argv[9]));
+	c.SetHealth(stoi(argv[9]));
+	c.SetInitiative(stoi(argv[10]));
+	c.SetAvailableSkillPoints(stoi(argv[11]));
+	c.SetTotalSkillPoints(stoi(argv[12]));
+	c.SetBio(argv[13]);
+	
+	characters_V.push_back(c);
 	return 0;
 }
 
 static int callback_class(void *NotUsed, int argc, char **argv, char **azColName){
-	classes_V[loc].SetName(argv[0]);
-	classes_V[loc].SetReccomendedAlignments(argv[1]);
-	classes_V[loc].SetStartingGold(argv[2]);
-	classes_V[loc].SetHitDie(argv[3]);
-	classes_V[loc].SetDescription(argv[4]);
+	Class c;
 
-	loc++;
+	c.SetName(argv[0]);
+	c.SetReccomendedAlignments(argv[1]);
+	c.SetStartingGold(argv[2]);
+	c.SetHitDie(argv[3]);
+	c.SetDescription(argv[4]);
+
+	classes_V.push_back(c);
 	return 0;
 }
 
@@ -356,14 +376,43 @@ static int callback_classLearnsSpells(void *NotUsed, int argc, char **argv, char
 
 	while (!found && lcv < classes_V.size())
 	{
-		if (classes_V[lcv].GetName() == argv[1])
+		if (classes_V[lcv].GetName() == "Sorcerer"	&&	argv[1] == "Sor"			||
+			classes_V[lcv].GetName() == "Wizard"	&&	argv[1] == "Wiz"			||
+			classes_V[lcv].GetName() == "Ranger"	&&	argv[1] == "Rgr"			||
+			classes_V[lcv].GetName() == "Bard"		&&	argv[1] == "Brd"			||
+			classes_V[lcv].GetName() == "Druid"		&&	argv[1] == "Drd"			||
+			classes_V[lcv].GetName() == "Paladin"	&&	argv[1] == "Pal"			||
+			classes_V[lcv].GetName() == "Cleric"	&&	argv[1] == "Clr"			||
+														argv[1] == "Air"			||
+														argv[1] == "Animal"			||
+														argv[1] == "Chaos"			||
+														argv[1] == "Death"			||
+														argv[1] == "Destruction"	||
+														argv[1] == "Earth"			||
+														argv[1] == "Evil"			||
+														argv[1] == "Fire"			||
+														argv[1] == "Good"			||
+														argv[1] == "Healing"		||
+														argv[1]	== "Knowledge"		||
+														argv[1] == "Law"			||
+														argv[1] == "Luck"			||
+														argv[1] == "Magic"			||
+														argv[1] == "Plant"			||
+														argv[1]	== "Protection"		||
+														argv[1] == "Strength"		||
+														argv[1] == "Sun"			||
+														argv[1] == "Travel"			||
+														argv[1]	== "Trickery"		||
+														argv[1] == "War"			||
+														argv[1] == "Water"
+			)
 			found = true;
 		else
 			lcv++;
 	}
 	if(found)
 	{
-		
+		l.className = argv[1];
 		l.s.SetName(argv[0]);
 		l.level = stoi(argv[2]);
 		
@@ -373,15 +422,46 @@ static int callback_classLearnsSpells(void *NotUsed, int argc, char **argv, char
 	return 0;
 }
 
-static int callback_feat(void *NotUsed, int argc, char **argv, char **azColName){
-	feats_V[loc].SetName(argv[0]);
-	feats_V[loc].SetType(argv[1]);
-	feats_V[loc].SetBenefit(argv[2]);
-	feats_V[loc].SetNormal(argv[3]);
-	feats_V[loc].SetSpecial(argv[4]);
-	feats_V[loc].SetDescription(argv[5]);
+static int callback_classBaseSaves(void *NotUsed, int argc, char **argv, char **azColName){
 
-	loc++;
+	int lcv = 0;
+	bool found = false;
+	baseSave b;
+
+	while (!found && lcv < classes_V.size())
+	{
+		if (classes_V[lcv].GetName() == argv[0])
+			found = true;
+		else
+			lcv++;
+	}
+	if(found)
+	{
+		b.level = stoi(argv[1]);
+		b.baseAttack = argv[2];
+		b.fortificationSave = stoi(argv[3]);
+		b.reflexSave = stoi(argv[4]);
+		b.willSave = stoi(argv[5]);
+		b.special = argv[6];
+		
+
+	}
+	return 0;
+}
+
+
+
+static int callback_feat(void *NotUsed, int argc, char **argv, char **azColName){
+	Feat f;
+
+	f.SetName(argv[0]);
+	f.SetType(argv[1]);
+	f.SetBenefit(argv[2]);
+	f.SetNormal(argv[3]);
+	f.SetSpecial(argv[4]);
+	f.SetDescription(argv[5]);
+
+	feats_V.push_back(f);
 	return 0;
 }
 
@@ -408,59 +488,67 @@ static int callback_featPrereqs(void *NotUsed, int argc, char **argv, char **azC
 }
 
 static int callback_items(void *NotUsed, int argc, char **argv, char **azColName){
-	items_V[loc].SetName(argv[0]);
-	items_V[loc].SetCost(stoi(argv[1]));
-	items_V[loc].SetWeight(stoi(argv[2]));
-	items_V[loc].SetDescription(argv[3]);
-	items_V[loc].SetType(argv[4]);
+	Item i;
 
-	loc++;
+	i.SetName(argv[0]);
+	i.SetCost(argv[1]);
+	i.SetWeight(argv[2]);
+	i.SetDescription(argv[3]);
+	i.SetType(argv[4]);
+
+	items_V.push_back(i);
 	return 0;
 }
 
 static int callback_armors(void *NotUsed, int argc, char **argv, char **azColName){
-	armors_V[loc].SetName(argv[0]);
-	armors_V[loc].SetType(argv[1]);
-	armors_V[loc].SetCost(stoi(argv[2]));
-	armors_V[loc].SetWeight(stoi(argv[3]));
-	armors_V[loc].SetSpeedHuman(stoi(argv[4]));
-	armors_V[loc].SetSpeedDwarf(stoi(argv[5]));
-	armors_V[loc].SetMaxDexBonus(stoi(argv[6]));
-	armors_V[loc].SetArmorCheckPenalty(argv[7]);
-	armors_V[loc].SetArcaneSpellFailure(stod(argv[8]));
-	armors_V[loc].SetArmorBonus(argv[9]);
-	armors_V[loc].SetDon(argv[10]);
-	armors_V[loc].SetDonHastely(argv[11]);
-	armors_V[loc].SetRemove(argv[12]);
-	armors_V[loc].SetDescription(argv[13]);
+	Armor a;
+	
+	a.SetName(argv[0]);
+	a.SetType(argv[1]);
+	a.SetCost(argv[2]);
+	a.SetWeight(argv[3]);
+	a.SetSpeedHuman(argv[4]);
+	a.SetSpeedDwarf(argv[5]);
+	a.SetMaxDexBonus(argv[6]);
+	a.SetArmorCheckPenalty(argv[7]);
+	a.SetArcaneSpellFailure(argv[8]);
+	a.SetArmorBonus(argv[9]);
+	a.SetDon(argv[10]);
+	a.SetDonHastely(argv[11]);
+	a.SetRemove(argv[12]);
+	a.SetDescription(argv[13]);
 
-	loc++;
+	armors_V.push_back(a);
 	return 0;
 }
 
 static int callback_weapons(void *NotUsed, int argc, char **argv, char **azColName){
-	weapons_V[loc].SetName(argv[0]);
-	weapons_V[loc].SetCost(stoi(argv[1]));
-	weapons_V[loc].SetWeight(stoi(argv[2]));
-	weapons_V[loc].SetWeaponType(argv[3]);
-	weapons_V[loc].SetProficiency(argv[4]);
-	weapons_V[loc].SetRange(argv[5]);
-	weapons_V[loc].SetHands(argv[6]);
-	weapons_V[loc].SetSize(argv[7]);
-	weapons_V[loc].SetCritical(argv[8]);
-	weapons_V[loc].SetDamage(argv[9]);
-	weapons_V[loc].SetDescription(argv[10]);
+	Weapon w;
 
-	loc++;
+	w.SetName(argv[0]);
+	w.SetCost(argv[1]);
+	w.SetWeight(argv[2]);
+	w.SetWeaponType(argv[3]);
+	w.SetProficiency(argv[4]);
+	w.SetRange(argv[5]);
+	w.SetHands(argv[6]);
+	w.SetSize(argv[7]);
+	w.SetCritical(argv[8]);
+	w.SetDamage(argv[9]);
+	w.SetDescription(argv[10]);
+
+	weapons_V.push_back(w);
 	return 0;
 }
 
 static int callback_religions(void *NotUsed, int argc, char **argv, char **azColName){
-	religions_V[loc].SetDietyName(argv[0]);
-	religions_V[loc].SetDescription(argv[1]);
-	religions_V[loc].SetSuggestedAlignment(argv[2]);
+	Religion r;
 
-	loc++;
+	r.SetDietyName(argv[0]);
+	r.SetDescription(argv[1]);
+	r.SetSuggestedAlignment(argv[2]);
+
+	religions_V.push_back(r);
 	return 0;
 }
 
@@ -495,7 +583,6 @@ vector<Spell>* LoadSpells()
 	while (!spells_V.empty())
 		spells_V.pop_back();
 
-	loc = 0; //Reset the global indexer. 
 	string query_s = "SELECT * FROM `Spells`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_spell, 0, &zErrMsg) == SQLITE_OK)
 		return ptr;
@@ -512,7 +599,6 @@ vector<Character>* LoadCharacter()
 	while (!characters_V.empty())
 		characters_V.pop_back();
 
-	loc = 0; //Reset the global indexer. 
 	string query_s = "SELECT * FROM `Character`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_character, 0, &zErrMsg) == SQLITE_OK){
 		query_s = "SELECT * FROM `Character_Class`;";
@@ -541,7 +627,6 @@ vector<Class>* LoadClasses()
 	while(!classes_V.empty())
 		classes_V.pop_back();
 
-	loc = 0;
 	string query_s = "SELECT * FROM `Class`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_class, 0, &zErrMsg) == SQLITE_OK){
 		query_s = "SELECT * FROM `ClassFeatures`;";
@@ -562,7 +647,6 @@ vector<Feat>* LoadFeats()
 	while(!feats_V.empty())
 		feats_V.pop_back();
 
-	loc = 0;
 	string query_s = "SELECT * FROM `Feats`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_feat, 0, &zErrMsg) == SQLITE_OK){
 		query_s = "SELECT * FROM `FeatPrerequisite`;";
@@ -580,7 +664,6 @@ vector<Item>* LoadItems()
 	while(!items_V.empty())
 		items_V.pop_back();
 
-	loc = 0;
 	string query_s = "SELECT * FROM `Items`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_items, 0, &zErrMsg) == SQLITE_OK)
 		return ptr;
@@ -595,7 +678,6 @@ vector<Weapon>* LoadWeapons()
 	while(!weapons_V.empty())
 		weapons_V.pop_back();
 
-	loc = 0;
 	string query_s = "SELECT * FROM `Weapons`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_weapons, 0, &zErrMsg) == SQLITE_OK)
 		return ptr;
@@ -610,9 +692,37 @@ vector<Armor>* LoadArmors()
 	while(!armors_V.empty())
 		armors_V.pop_back();
 
-	loc = 0;
 	string query_s = "SELECT * FROM `Armor`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_armors, 0, &zErrMsg) == SQLITE_OK)
+		return ptr;
+
+	return NULL;
+}
+
+
+vector<Alignment>* LoadAlignments()
+{
+	vector<Alignment> *ptr = &alignments_V;
+	while(!alignments_V.empty())
+		alignments_V.pop_back();
+
+	string query_s = "SELECT * FROM `Alignment`;";
+	if (sqlite3_exec(db, query_s.c_str(), callback_alignment, 0, &zErrMsg) == SQLITE_OK)
+		return ptr;
+
+	return NULL;
+}
+
+
+vector<Character>* LoadCharacters()
+{
+	vector<Character> *ptr = &characters_V;
+
+	while(!characters_V.empty())
+		characters_V.pop_back();
+
+	string query_s = "SELECT * FROM `Character`;";
+	if (sqlite3_exec(db, query_s.c_str(), callback_character, 0, &zErrMsg) == SQLITE_OK)
 		return ptr;
 
 	return NULL;
@@ -625,7 +735,6 @@ vector<Race>* LoadRaces()
 	while(!races_V.empty())
 		races_V.pop_back();
 
-	loc = 0;
 	string query_s = "SELECT * FROM `Race`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_races, 0, &zErrMsg) == SQLITE_OK){
 		query_s = "SELECT * From `RaceLanguages`;";
@@ -643,7 +752,6 @@ vector<Religion>* LoadReligions()
 	while(!religions_V.empty())
 		religions_V.pop_back();
 
-	loc = 0;
 	string query_s = "SELECT * FROM `Religion`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_religions, 0, &zErrMsg) == SQLITE_OK)
 			return ptr;			
@@ -658,7 +766,6 @@ vector<Skill>* LoadSkills()
 	while(!skills_V.empty())
 		skills_V.pop_back();
 
-	loc = 0;
 	string query_s = "SELECT * FROM `Skills`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_skill, 0, &zErrMsg) == SQLITE_OK)
 			return ptr;			

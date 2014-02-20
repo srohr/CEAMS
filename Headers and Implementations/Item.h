@@ -10,17 +10,17 @@ public:
 	void SetName(string s)					{name = s;}
 	string GetDescription()					{return description;}
 	void SetDescription(string s)			{description = s;}
-	int GetCost()							{return cost;}
-	void SetCost(int i)						{cost = i;}
-	int GetWeight()							{return weight;}
-	void SetWeight(int i)					{weight = i;}
+	string GetCost()						{return cost;}
+	void SetCost(string i)					{cost = i;}
+	string GetWeight()						{return weight;}
+	void SetWeight(string i)				{weight = i;}
 	void SetType(string s)					{type = s;}
 	string GetType()						{return type;}
 private:
 	string name,
 		description,
 		type;
-	int cost,
+	string cost,
 		weight;
 
 };
@@ -28,14 +28,14 @@ private:
 class Armor : public Item
 {
 public:
-	int GetSpeedHuman()						{return speedHuman;}
-	void SetSpeedHuman(int i)				{speedHuman = i;}
-	int GetSpeedDwarf()						{return speedDwarf;}
-	void SetSpeedDwarf(int i)				{speedDwarf = i;}
-	int GetMaxDexBonus()					{return maxDexBonus;}
-	void SetMaxDexBonus(int i)				{maxDexBonus = i;}
-	double GetArcaneSpellFailure()			{return arcaneSpellFailure;}
-	void SetArcaneSpellFailure(double d)	{arcaneSpellFailure = d;}
+	string GetSpeedHuman()					{return speedHuman;}
+	void SetSpeedHuman(string i)				{speedHuman = i;}
+	string GetSpeedDwarf()					{return speedDwarf;}
+	void SetSpeedDwarf(string i)				{speedDwarf = i;}
+	string GetMaxDexBonus()					{return maxDexBonus;}
+	void SetMaxDexBonus(string i)				{maxDexBonus = i;}
+	string GetArcaneSpellFailure()			{return arcaneSpellFailure;}
+	void SetArcaneSpellFailure(string d)	{arcaneSpellFailure = d;}
 	string GetArmorCheckPenalty()			{return armorCheckPenalty;}
 	void SetArmorCheckPenalty(string s)		{armorCheckPenalty = s;}
 	string GetArmorBonus()					{return armorBonus;}
@@ -50,10 +50,10 @@ public:
 	void SetType(string s)					{type = s;}
 	
 private:
-	int speedHuman,
+	string speedHuman,
 		speedDwarf,
 		maxDexBonus;
-	double arcaneSpellFailure;
+	string arcaneSpellFailure;
 
 	string armorCheckPenalty,
 		armorBonus,

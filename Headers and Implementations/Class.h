@@ -7,6 +7,7 @@ using namespace std;
 
 struct LearnsSpells
 {
+	string className;
 	Spell s;
 	int level;
 };
@@ -14,6 +15,15 @@ struct LearnsSpells
 struct feature{
 	string featureName,
 		featureDescription;
+};
+
+struct baseSave{
+	int level,
+		fortificationSave,
+		reflexSave,
+		willSave;
+	string baseAttack,
+		special;
 };
 
 class Class
@@ -37,12 +47,10 @@ public:
 	void SetWisdomMod(int i)						{wisdomMod = i;}
 	string GetStartingGold()						{return startingGold;}
 	void SetStartingGold(string i)					{startingGold = i;}
-	string GetBaseAttack()							{return baseAttack;}
-	void SetBaseAttack(string i)					{baseAttack = i;}
 	string GetHitDie()								{return hitDie;}
 	void SetHitDie(string s)						{hitDie = s;}
-	string GetBaseSaveThrow()						{return baseSaveThrow;}
-	void SetBaseSaveThrow(string s)					{baseSaveThrow = s;}
+	vector<baseSave> GetBaseSaves()					{return baseSaves;}
+	void SetBaseSaves(vector<baseSave> v)			{baseSaves = v;}
 	vector<feature> GetFeatures()					{return features;}
 	void SetFeatures(vector<feature> v)				{features = v;}
 	void AddFeature(feature f)						{features.push_back(f);}
@@ -65,12 +73,11 @@ private:
 		strengthMod,
 		wisdomMod;
 	string startingGold,
-		baseAttack;
-	string hitDie,
-		baseSaveThrow;
+		hitDie;
 	vector<feature> features; 
 	//vector<Character> startingPackages;
 	string reccomendedAlignments;
-
+	vector<baseSave> baseSaves;
 	vector<LearnsSpells> spellsCanLearn;
 };
+
