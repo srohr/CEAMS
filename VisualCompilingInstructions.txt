@@ -1,0 +1,11 @@
+
+In Visual
+-Select "Project" 
+-Select "properties" on the end of that drop down list.
+-Change the dropdown "Configuration" setting to "Release"
+-Select C/C++ in "Configuration Properties"
+-Select the drop-down for "Runtime Library"
+-Select "Multi-threaded Debug (/MTd)"
+-Click OK or Apply
+-Compile the project
+The exeutable will be in the Debug folder for this project, and should work on any Windows machine (not sure how far backwards compatible, 8.1, 8 and 7 seem fine). 
