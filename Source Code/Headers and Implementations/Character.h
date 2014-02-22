@@ -21,7 +21,7 @@ struct owns{
 class Character
 {
 public:
-	Character();
+	Character(Class, Race);
 
 	int GetID()								{return ID;}
 	void SetID_DO_NOT_USE(int i)			{ID = i;}
@@ -93,6 +93,13 @@ public:
 	void CompleteSpells(vector<Spell>);
 	void CompleteClasses(vector<Class>);
 	
+	int GetLevel()							{return level;}
+	void SetLevel(int i)					{level = i;}
+	int GetTotalExp()						{return totalExp;}
+	void SetTotalExp(int i)					{totalExp = i;}
+
+	void LevelUp();
+
 private:
 	bool isStartingPackage;
 	string name;
@@ -106,6 +113,9 @@ private:
 	vector<Feat> charFeats;
 	vector<Skill> charSkills;
 	vector<Spell> charSpells;
+
+	int level, 
+		totalExp;
 
 	double gold;
 	int maxHealth,

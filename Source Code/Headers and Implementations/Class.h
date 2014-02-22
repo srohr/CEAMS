@@ -33,18 +33,6 @@ public:
 	void SetName(string s)							{name = s;}
 	string GetDescription()							{return description;}
 	void SetDescription(string s)					{description = s;}
-	int GetCharismaMod()							{return charismaMod;}
-	void SetCharismaMod(int i)						{charismaMod = i;}
-	int GetConstitutionMod()						{return constitutionMod;}
-	void SetConstitutionMod(int i)					{constitutionMod = i;}
-	int GetDexterityMod()							{return dexterityMod;}
-	void SetDexterityMod(int i)						{dexterityMod = i;}
-	int GetIntelligenceMod()						{return intelligenceMod;}
-	void SetIntelligenceMod(int i)					{intelligenceMod = i;}
-	int GetStrengthMod()							{return strengthMod;}
-	void SetStrengthMod(int i)						{strengthMod = i;}
-	int GetWisdomMod()								{return wisdomMod;}
-	void SetWisdomMod(int i)						{wisdomMod = i;}
 	string GetStartingGold()						{return startingGold;}
 	void SetStartingGold(string i)					{startingGold = i;}
 	string GetHitDie()								{return hitDie;}
@@ -63,17 +51,17 @@ public:
 	void SetSpellsCanLearn(vector<LearnsSpells> v)	{spellsCanLearn = v;}
 	void AddSpellCanLearn(LearnsSpells l)			{spellsCanLearn.push_back(l);}
 
+	string GetFirstLevelUpPoints()					{return firstLevelUpPoints;}
+	void SetFirstLevelUpPoints(string s)			{firstLevelUpPoints = s;}
+
+	string GetLevelUpPoints()						{return levelUpPoints;}
+	void SetLevelUpPoints(string s)					{levelUpPoints = s;}
+
 	void CompleteSpellsCanLearn(vector<Spell>);
 
 private:
 	string name;
 	string description;
-	int charismaMod,
-		constitutionMod,
-		dexterityMod,
-		intelligenceMod, 
-		strengthMod,
-		wisdomMod;
 	string startingGold,
 		hitDie;
 	vector<feature> features; 
@@ -81,5 +69,9 @@ private:
 	string reccomendedAlignments;
 	vector<baseSave> baseSaves;
 	vector<LearnsSpells> spellsCanLearn;
+
+
+	string firstLevelUpPoints,
+		levelUpPoints;
 };
 

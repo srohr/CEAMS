@@ -1,17 +1,39 @@
 #include <vector>
 #include <string>
 #include "Character.h"
+#include "ddmath.h"
+
+#pragma once;
 
 using namespace std;
 
-Character::Character()
+Character::Character(Class c, Race r)
 {
-	charisma = 0;
-	constitution = 0;
-	dexterity = 0;
-	intelligence = 0;
-	strength = 0;
-	wisdom = 0;
+	charClasses.push_back(c);
+	race = r.GetRaceName();
+
+	charisma = 0 + r.GetCharismaMod();
+	constitution = 0 + r.GetConstitutionMod();
+	dexterity = 0 + r.GetDexterityMod();
+	intelligence = 0 + r.GetIntelligenceMod();
+	strength = 0 + r.GetDexterityMod();
+	wisdom = 0 + r.GetWisdomMod();
+
+	level = 1;
+	totalExp = 0;
+	
+	availableSkillPoints = GetPoints(c.GetFirstLevelUpPoints(), intelligence);
+
+	totalSkillPoints = availableSkillPoints;
+
+	gold = Roll(c.GetStartingGold());
+}
+
+void Character::LevelUp()
+{
+	int x = GetPoints(charClasses.begin()->GetLevelUpPoints(), intelligence);
+	availableSkillPoints += x;
+	totalSkillPoints += x;
 }
 
 void Character::CompleteOwned(vector<Item> it, vector<Armor> ar, vector<Weapon> we)

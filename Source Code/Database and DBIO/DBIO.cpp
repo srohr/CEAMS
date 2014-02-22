@@ -20,7 +20,6 @@ char *zErrMsg = 0;
 sqlite3 *db; //DB object, used to manipulate DB.
 int rc = sqlite3_open(dbName, &db); //Connect to DB.
 
-
 vector<Spell> spells_V; //Global vectors to store values. 
 vector<Skill> skills_V;
 vector<Class> classes_V;
@@ -32,8 +31,6 @@ vector<Feat> feats_V;
 vector<Character> characters_V;
 vector<Alignment> alignments_V;
 vector<Religion> religions_V;
-
-
 
 static int callback(void *NotUsed, int argc, char **argv, char **azColName){
    int i;
@@ -108,6 +105,13 @@ static int callback_races(void *NotUsed, int argc, char **argv, char **azColName
 	r.SetReccomendedClass(argv[2]);
 	r.SetSize(argv[3]);
 	r.SetSpeed(argv[4]);
+
+	r.SetCharismaMod(stoi(argv[5]));
+	r.SetConstitutionMod(stoi(argv[6]));
+	r.SetDexterityMod(stoi(argv[7]));
+	r.SetIntelligenceMod(stoi(argv[8]));
+	r.SetStrengthMod(stoi(argv[9]));
+	r.SetWisdomMod(stoi(argv[10]));
 
 	races_V.push_back(r);
 	return 0;
@@ -186,6 +190,8 @@ static int callback_class(void *NotUsed, int argc, char **argv, char **azColName
 	c.SetStartingGold(argv[2]);
 	c.SetHitDie(argv[3]);
 	c.SetDescription(argv[4]);
+	c.SetFirstLevelUpPoints(argv[5]);
+	c.SetLevelUpPoints(argv[6]);
 
 	classes_V.push_back(c);
 	return 0;
@@ -407,6 +413,7 @@ bool CheckMatch(int lcv, string s)
 	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Trickery"		)	return true;
 	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "War"			)	return true;
 	if (classes_V[lcv].GetName() == "Cleric"	&&	s == "Water"		)	return true;
+	if (classes_V[lcv].GetName() == s)										return true;
 
 	return false;
 
@@ -843,7 +850,7 @@ bool RemoveFromCEAMS (Spell s)
 
 bool AddToCEAMS (Race r)
 {
-	string query_s = "INSERT INTO `Race` (`RaceName`, `Physic`, `RecomendedClass`, `Size`, `Speed`) VALUES ('";
+	string query_s = "INSERT INTO `Race` (`RaceName`, `Physic`, `RecomendedClass`, `Size`, `Speed`, `ChaMod`, `ConMod`, `DexMod`, `IntMod`, `StrMod`, `WisMod`) VALUES ('";
 	query_s += r.GetRaceName();			query_s += "', '";
 	query_s += r.GetPhysic();			query_s += "', '";
 	query_s += r.GetReccomendedClass();	query_s += "', '";
@@ -930,13 +937,15 @@ bool AddToCEAMS(learnedBy l)
 
 bool AddToCEAMS (Class c)
 {
-	string query_s = "INSERT INTO `Class` (`ClassName`, `Alignment`, `StartingGold`, `HitDie`, `ClassDescription`) ";
+	string query_s = "INSERT INTO `Class` (`ClassName`, `Alignment`, `StartingGold`, `HitDie`, `ClassDescription`, `FirstLevelUpPoints`, `LevelUpPoints`) ";
 	query_s += "VALUES ('";
 	query_s += c.GetName();						query_s += "', '";
 	query_s += c.GetReccomendedAlignments();	query_s += "', '";
 	query_s += c.GetStartingGold();				query_s += "', '";
 	query_s += c.GetHitDie();					query_s += "', '";
-	query_s += c.GetDescription();				query_s += "');";
+	query_s += c.GetDescription();				query_s += "', '";
+	query_s += c.GetFirstLevelUpPoints();		query_s += "', '";
+	query_s += c.GetLevelUpPoints();			query_s += "');";
 
 	if (rc == SQLITE_OK) //Check connection status.
 	{
@@ -1276,10 +1285,10 @@ bool RemoveFromCEAMS(Alignment a)
 
 bool AddToCEAMS(Character c)
 {
-	string query_s = "INSERT INTO `Character` (`CharacterID`, `CharacterName`, `Race`, `Alignment`, `Religion`, `Gold`, `ArmorClass`, `SavingThrow`, `AttackBonus`, `HitPoints`, `Initiative`, `AvailableSkillPoints`, `TotalSkillPoints`) VALUES ('";
+	string query_s = "INSERT INTO `Character` (`CharacterID`, `CharacterName`, `Race`, `Alignment`, `Religion`, `Gold`, `ArmorClass`, `SavingThrow`, `AttackBonus`, `HitPoints`, `Initiative`, `AvailableSkillPoints`, `TotalSkillPoints`, `Level`, `TotalExp`) VALUES ('";
 	query_s += c.GetID();							query_s += "', '";
 	query_s += c.GetName();							query_s += "', '";
-	query_s += c.GetRace();							query_s += "', '";
+	query_s += c.GetRace();						query_s += "', '";
 	query_s += c.GetAlignment();					query_s += "', '";
 	query_s += c.GetReligion();						query_s += "', '";
 	query_s += c.GetGold();							query_s += "', '";
@@ -1289,7 +1298,11 @@ bool AddToCEAMS(Character c)
 	query_s += c.GetHealth();						query_s += "', '";
 	query_s += c.GetInitiative();					query_s += "', '";
 	query_s += c.GetAvailableSkillPoints();			query_s += "', '";
-	query_s += c.GetTotalSkillPoints();				query_s += "');";
+	query_s += c.GetTotalSkillPoints();				query_s += "', '";
+	query_s += c.GetLevel();						query_s += "', '";
+	query_s += c.GetTotalExp();						
+	
+	query_s += "');";
 
 	if (rc == SQLITE_OK) //Check connection status.
 	{
