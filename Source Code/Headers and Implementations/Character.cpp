@@ -120,9 +120,9 @@ void Character::CompleteSkills(vector<Skill> v)
 		j = 0; //Reset itr2
 		while (!done && j < v.size()) 
 		{
-			if (GetCharSkills()[i].GetName() == v[j].GetName()) //Find match by name
+			if (GetCharSkills()[i].skill.GetName() == v[j].GetName()) //Find match by name
 			{
-				GetCharSkills()[i] = v[j]; //Flesh out data for that skill.
+				GetCharSkills()[i].skill = v[j]; //Flesh out data for that skill.
 				done = true;
 			}
 			else 

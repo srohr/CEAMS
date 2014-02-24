@@ -272,7 +272,7 @@ static int callback_charSkills(void *NotUsed, int argc, char **argv, char **azCo
 
 	int lcv = 0;
 	bool found = false;
-	Skill s;
+	SkillStruct* s;
 
 	while (!found && lcv < characters_V.size())
 	{
@@ -283,8 +283,10 @@ static int callback_charSkills(void *NotUsed, int argc, char **argv, char **azCo
 	}
 	if(found)
 	{
-		s.SetName(argv[1]);
-		characters_V[lcv].GetCharSkills().push_back(s);
+		s = new SkillStruct;
+		s->skill.SetName(argv[1]);
+		s->rank = stoi(argv[2]);
+		characters_V[lcv].GetCharSkills().push_back(*s);
 	}
 	return 0;
 }

@@ -18,6 +18,12 @@ struct owns{
 	Armor armor;
 };
 
+struct SkillStruct
+{
+	int rank;
+	Skill skill;
+};
+
 class Character
 {
 public:
@@ -80,8 +86,8 @@ public:
 	void SetCharClasses(vector<Class> v)	{charClasses = v;}
 	vector<Feat> GetCharFeats()				{return charFeats;}
 	void SetCharFeats(vector<Feat> v)		{charFeats = v;}
-	vector<Skill> GetCharSkills()			{return charSkills;}
-	void SetCharSkills(vector<Skill> v)		{charSkills = v;}
+	vector<SkillStruct> GetCharSkills()			{return charSkills;}
+	void SetCharSkills(vector<SkillStruct> v)		{charSkills = v;}
 	vector<Spell> GetCharSpells()			{return charSpells;}
 	void SetCharSpells(vector<Spell> v)		{charSpells = v;}
 	string GetBio()							{return bio;}
@@ -100,6 +106,8 @@ public:
 
 	void LevelUp();
 
+
+
 private:
 	bool isStartingPackage;
 	string name;
@@ -111,7 +119,7 @@ private:
 
 	vector<Class> charClasses;
 	vector<Feat> charFeats;
-	vector<Skill> charSkills;
+	vector<SkillStruct> charSkills;
 	vector<Spell> charSpells;
 
 	int level, 
