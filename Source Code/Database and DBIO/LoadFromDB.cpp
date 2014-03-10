@@ -8,6 +8,7 @@ using namespace std;
 
 struct DBLS
 {
+	bool noErrors;
 	vector<Alignment> *alignment_V;
 	vector<Armor> *armor_V;
 	vector<Character> *character_V;
@@ -46,28 +47,28 @@ DBLS DBLoad()
 	//t2 = clock();
 	//cout << "To load: " << (double)(t2 - t1)/CLOCKS_PER_SEC << "s" << endl;
 	
-	/*if (LS.alignment_V == NULL)
-		cout << "Alignment bad" << endl;
+	LS.noErrors = true;
+	
+	if (LS.alignment_V == NULL)
+		LS.noErrors = false;
 	if (LS.armor_V == NULL)
-		cout << "Armor bad" << endl;
+		LS.noErrors = false;
 	if (LS.character_V == NULL)
-		cout << "Character bad" << endl;
+		LS.noErrors = false;
 	if (LS.class_V == NULL)
-		cout << "Class bad" << endl;
+		LS.noErrors = false;
 	if (LS.feat_V == NULL)
-		cout << "Feat bad" << endl;
+		LS.noErrors = false;
 	if (LS.item_V == NULL)
-		cout << "Item bad" << endl;
+		LS.noErrors = false;
 	if (LS.race_V == NULL)
-		cout << "Race bad" << endl;
-	//if (LS.religion_V == NULL)
-		//cout << "Religion bad" << endl;
+		LS.noErrors = false;
 	if (LS.skill_V == NULL)
-		cout << "Skill bad" << endl;
+		LS.noErrors = false;
 	if (LS.spell_V == NULL)
-		cout << "Spell bad" << endl;
+		LS.noErrors = false;
 	if (LS.weapon_V == NULL)
-		cout << "Weapon bad" << endl;*/
+		LS.noErrors = false;
 	
 	//t1 = clock();
 
