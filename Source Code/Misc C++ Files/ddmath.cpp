@@ -1,6 +1,7 @@
 #include "ddmath.h"
 #include <sstream>
 #include <random>
+#include <time.h>
 
 using namespace std;
 
@@ -30,6 +31,9 @@ int GetPoints(string fn, int var)
 int Roll(int n, int d)
 {
 	int ret = 0;
+
+	int T = (int)clock();
+	srand(T);
 
 	for (int i = 0; i < n; i++)
 		ret += rand()%d + 1; //This isn't as random as we can make it. 
