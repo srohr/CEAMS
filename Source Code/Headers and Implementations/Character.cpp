@@ -7,8 +7,10 @@
 
 using namespace std;
 
-Character::Character(Class c, Race r)
+Character::Character(Class c, Race r, vector<Character> chars)
 {
+	ID = chars.size(); //Should cause this char's ID to be next int. 
+
 	charClasses.push_back(c);
 	race = r.GetRaceName();
 
@@ -27,6 +29,8 @@ Character::Character(Class c, Race r)
 	totalSkillPoints = availableSkillPoints;
 
 	gold = Roll(c.GetStartingGold());
+
+	chars.push_back(*this);
 }
 
 void Character::LevelUp()
