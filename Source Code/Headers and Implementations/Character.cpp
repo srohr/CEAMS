@@ -30,7 +30,7 @@ Character::Character(Class c, Race r, vector<Character> chars)
 
 	gold = Roll(c.GetStartingGold());
 
-	chars.push_back(*this);
+	//chars.push_back(*this);
 }
 
 void Character::LevelUp()
