@@ -20,6 +20,8 @@ char *zErrMsg = 0;
 sqlite3 *db; //DB object, used to manipulate DB.
 int rc = sqlite3_open(dbName, &db); //Connect to DB.
 
+//This comment serves no purpose other than to alter the file.
+
 vector<Spell> spells_V; //Global vectors to store values. 
 vector<Skill> skills_V;
 vector<Class> classes_V;
