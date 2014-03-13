@@ -28,6 +28,7 @@ class Character
 {
 public:
 	Character(Class, Race, vector<Character>); //Vector is the vector of all characters.
+	Character();
 
 	int GetID()								{return ID;}
 	void SetID_DO_NOT_USE(int i)			{ID = i;}
