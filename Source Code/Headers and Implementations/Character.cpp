@@ -7,6 +7,23 @@
 
 using namespace std;
 
+Character::Character()
+{
+	isStartingPackage = false;
+	name = "";
+	race = "";
+	alignment = "";
+	religion = "";
+	bio = "";
+
+	level = 0; 
+	totalExp = 0;
+
+
+	ID = -1;
+}
+
+
 Character::Character(Class c, Race r, vector<Character> chars)
 {
 	ID = chars.size(); //Should cause this char's ID to be next int. 
