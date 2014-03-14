@@ -1357,20 +1357,22 @@ bool AddToCEAMS(Character c)
 			itr2++; i++;
 		}
 
-		vector<Skill>::iterator itr3 = c.GetCharSkills().begin();
+		vector<SkillStruct>::iterator itr3 = c.GetCharSkills().begin();
 		i = 0;
-		query_s = "INSERT INTO `Character_Skills` (`Character_CharacterID`, `Skills_SkillName`) VALUES ('";
+		query_s = "INSERT INTO `Character_Skills` (`Character_CharacterID`, `Rank`, `Skills_SkillName`) VALUES ('";
 		query_s += c.GetID();						query_s += "', '";
-		query_s += c.GetCharSkills()[i].GetName();	query_s += "');";
+		query_s += g.GetCharSkills()[i].rank;		query_s += "', '";
+		query_s += c.GetCharSkills()[i].skill.GetName();	query_s += "');";
 		itr3++; i++;
 		
 		while (itr3 != c.GetCharSkills().end())
 		{
 			if (sqlite3_exec(db, query_s.c_str(), callback, 0, &zErrMsg) != SQLITE_OK)
 				return false;
-			query_s = "INSERT INTO `Character_Skills` (`Character_CharacterID`, `Skills_SkillName`) VALUES ('";
+			query_s = "INSERT INTO `Character_Skills` (`Character_CharacterID`, `Rank`, `Skills_SkillName`) VALUES ('";
 			query_s += c.GetID();						query_s += "', '";
-			query_s += c.GetCharSkills()[i].GetName();	query_s += "');";
+			query_s += g.GetCharSkills()[i].rank;		query_s += "', '";
+			query_s += c.GetCharSkills()[i].skill.GetName();	query_s += "');";
 			itr3++; i++;
 		
 		}
