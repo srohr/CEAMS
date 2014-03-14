@@ -4,12 +4,18 @@
 #include "dialog2.h"
 #include "tutorial.h"
 #include "choosechar.h"
+#include "DBIO.h"
+//extern DBLS DBload();
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    DBLS hi;
+    vector<Skill>*derp;
+    derp  = LoadSkills();
+    Skill herp;
 }
 
 MainWindow::~MainWindow()

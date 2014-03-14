@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "dialog.h"
+#include "DBIO.h"
 
 namespace Ui {
 class MainWindow;

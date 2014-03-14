@@ -2,6 +2,7 @@
 #define DIALOG2_H
 
 #include <QDialog>
+#include <QVector>
 
 namespace Ui {
 class Dialog2;
@@ -27,6 +28,8 @@ private slots:
 private:
     Ui::Dialog2 *ui;
     int counter;
+    QVector<int> sean;
+    QVector<int> holder;
 };
 
 #endif // DIALOG2_H

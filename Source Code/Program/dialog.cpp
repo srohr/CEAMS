@@ -46,6 +46,8 @@ void Dialog::on_Next_clicked()
     /*Dialog2 *dia = new Dialog2;
     dia->show();
     this->close();*/
+    QString hi = "derp";
+    ui->listWidget->addItem(hi);
     ui->listWidget->show();
     ui->listWidget_2->hide();
     if(checker != true)
