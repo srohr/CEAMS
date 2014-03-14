@@ -10,6 +10,7 @@
 #include "Alignment.h"
 #include "Class.h"
 #include <iostream>
+#include <vector>
 #pragma once
 
 using namespace std;
@@ -1361,7 +1362,7 @@ bool AddToCEAMS(Character c)
 		i = 0;
 		query_s = "INSERT INTO `Character_Skills` (`Character_CharacterID`, `Rank`, `Skills_SkillName`) VALUES ('";
 		query_s += c.GetID();						query_s += "', '";
-		query_s += g.GetCharSkills()[i].rank;		query_s += "', '";
+		query_s += c.GetCharSkills()[i].rank;		query_s += "', '";
 		query_s += c.GetCharSkills()[i].skill.GetName();	query_s += "');";
 		itr3++; i++;
 		
@@ -1371,7 +1372,7 @@ bool AddToCEAMS(Character c)
 				return false;
 			query_s = "INSERT INTO `Character_Skills` (`Character_CharacterID`, `Rank`, `Skills_SkillName`) VALUES ('";
 			query_s += c.GetID();						query_s += "', '";
-			query_s += g.GetCharSkills()[i].rank;		query_s += "', '";
+			query_s += c.GetCharSkills()[i].rank;		query_s += "', '";
 			query_s += c.GetCharSkills()[i].skill.GetName();	query_s += "');";
 			itr3++; i++;
 		
@@ -1488,6 +1489,7 @@ bool Save(Character c)
 	return false;
 }
 
+
 /* Format for retrieving data without callback fn.
 typedef struct sqlite_vm sqlite_vm;
 
@@ -1526,3 +1528,52 @@ vector<Spell>* LoadSpells()
 
 	}
 }*/
+
+DBLS DBLoad()
+{
+	//clock_t t1, t2;
+	
+	DBLS LS;
+
+	//t1 = clock();
+
+	LS.alignment_V = LoadAlignments();
+	LS.armor_V = LoadArmors();
+	LS.character_V = LoadCharacters();
+	LS.class_V = LoadClasses();
+	LS.feat_V = LoadFeats();
+	LS.item_V = LoadItems();
+	LS.race_V = LoadRaces();
+	//LS.religion_V = LoadReligions();
+	LS.skill_V = LoadSkills();
+	LS.spell_V = LoadSpells();
+	LS.weapon_V = LoadWeapons();
+
+	vector<Character>::iterator itr = LS.character_V->begin();
+	while (itr != LS.character_V->end())
+	{
+		itr->CompleteClasses(*LS.class_V);
+		itr->CompleteFeats(*LS.feat_V);
+		itr->CompleteOwned(*LS.item_V, *LS.armor_V, *LS.weapon_V);
+		itr->CompleteSkills(*LS.skill_V);
+		itr->CompleteSpells(*LS.spell_V);
+		itr++;
+	}
+
+	vector<Class>::iterator itr2 = LS.class_V->begin();
+	while (itr2 != LS.class_V->end())
+	{
+		itr2->CompleteSpellsCanLearn(*LS.spell_V);
+		itr2++;
+	}
+
+	vector<Feat>::iterator itr3 = LS.feat_V->begin();
+	while (itr3 != LS.feat_V->end())
+	{
+		itr3->CompletePrereqs(*LS.feat_V);
+		itr3++;
+	}
+
+	
+	return LS;	
+}

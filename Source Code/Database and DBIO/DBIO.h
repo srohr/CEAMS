@@ -18,6 +18,26 @@ struct learnedBy
 	int l;
 };
 
+struct DBLS
+{
+	vector<Alignment> *alignment_V;
+	vector<Armor> *armor_V;
+	vector<Character> *character_V;
+	vector<Class> *class_V;
+	vector<Feat> *feat_V;
+	vector<Item> *item_V;
+	vector<Race> *race_V;
+	//vector<Religion> *religion_V;
+	vector<Skill> *skill_V;
+	vector<Spell> *spell_V;
+	vector<Weapon> *weapon_V;
+
+};
+
+DBLS DBLoad();
+
+
+
 bool AddToCEAMS (Spell);
 bool RemoveFromCEAMS (Spell);
 vector<Spell>* LoadSpells();
@@ -97,3 +117,7 @@ vector<Skill>* LoadSkills(string);
 vector<Character>* LoadCharacters();
 vector<Character>* LoadCharacters(string);
 */
+
+
+
+
