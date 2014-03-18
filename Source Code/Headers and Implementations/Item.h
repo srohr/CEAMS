@@ -46,8 +46,7 @@ public:
 	void SetDonHastely(string s)			{donHastely = s;}
 	string GetRemove()						{return remove;}
 	void SetRemove(string s)				{remove = s;}
-	string GetType()						{return type;}
-	void SetType(string s)					{type = s;}
+
 	
 private:
 	string speedHuman,
@@ -59,8 +58,8 @@ private:
 		armorBonus,
 		don,
 		donHastely,
-		remove,
-		type;
+		remove;
+
 };
 
 class Weapon : public Item
