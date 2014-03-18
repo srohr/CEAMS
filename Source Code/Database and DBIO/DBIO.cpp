@@ -1534,7 +1534,7 @@ DBLS DBLoad()
 	//clock_t t1, t2;
 	
 	DBLS LS;
-
+	LS.loadedOkay = true;
 	//t1 = clock();
 
 	LS.alignment_V = LoadAlignments();
@@ -1549,31 +1549,54 @@ DBLS DBLoad()
 	LS.spell_V = LoadSpells();
 	LS.weapon_V = LoadWeapons();
 
-	vector<Character>::iterator itr = LS.character_V->begin();
-	while (itr != LS.character_V->end())
-	{
-		itr->CompleteClasses(*LS.class_V);
-		itr->CompleteFeats(*LS.feat_V);
-		itr->CompleteOwned(*LS.item_V, *LS.armor_V, *LS.weapon_V);
-		itr->CompleteSkills(*LS.skill_V);
-		itr->CompleteSpells(*LS.spell_V);
-		itr++;
-	}
+	if (LS.alignment_V == NULL)
+		LS.loadedOkay = false;
+	if (LS.armor_V == NULL)
+		LS.loadedOkay = false;
+	if (LS.character_V == NULL)
+		LS.loadedOkay = false;
+	if (LS.class_V == NULL)
+		LS.loadedOkay = false;
+	if (LS.feat_V == NULL)
+		LS.loadedOkay = false;
+	if (LS.item_V == NULL)
+		LS.loadedOkay = false;
+	if (LS.race_V == NULL)
+		LS.loadedOkay = false;
+	if (LS.skill_V == NULL)
+		LS.loadedOkay = false;
+	if (LS.spell_V == NULL)
+		LS.loadedOkay = false;
+	if (LS.weapon_V == NULL)
+		LS.loadedOkay = false;
 
-	vector<Class>::iterator itr2 = LS.class_V->begin();
-	while (itr2 != LS.class_V->end())
+	if (LS.loadedOkay)
 	{
-		itr2->CompleteSpellsCanLearn(*LS.spell_V);
-		itr2++;
-	}
+		vector<Character>::iterator itr = LS.character_V->begin();
+		while (itr != LS.character_V->end())
+		{
+			itr->CompleteClasses(*LS.class_V);
+			itr->CompleteFeats(*LS.feat_V);
+			itr->CompleteOwned(*LS.item_V, *LS.armor_V, *LS.weapon_V);
+			itr->CompleteSkills(*LS.skill_V);
+			itr->CompleteSpells(*LS.spell_V);
+			itr++;
+		}
 
-	vector<Feat>::iterator itr3 = LS.feat_V->begin();
-	while (itr3 != LS.feat_V->end())
-	{
-		itr3->CompletePrereqs(*LS.feat_V);
-		itr3++;
-	}
+		vector<Class>::iterator itr2 = LS.class_V->begin();
+		while (itr2 != LS.class_V->end())
+		{
+			itr2->CompleteSpellsCanLearn(*LS.spell_V);
+			itr2++;
+		}
 
+		vector<Feat>::iterator itr3 = LS.feat_V->begin();
+		while (itr3 != LS.feat_V->end())
+		{
+			itr3->CompletePrereqs(*LS.feat_V);
+			itr3++;
+		}
+	}
 	
 	return LS;	
 }

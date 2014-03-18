@@ -32,6 +32,7 @@ struct DBLS
 	vector<Spell> *spell_V;
 	vector<Weapon> *weapon_V;
 
+	bool loadedOkay;
 };
 
 DBLS DBLoad();
