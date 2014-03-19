@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>WizardSpecialization</class>
- <widget class="QDialog" name="WizardSpecialization">
+ <class>WizardSpec</class>
+ <widget class="QDialog" name="WizardSpec">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="Next">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>140</y>
+     <x>10</x>
+     <y>10</y>
      <width>75</width>
      <height>23</height>
     </rect>

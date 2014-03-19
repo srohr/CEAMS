@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Cosmetics</class>
- <widget class="QDialog" name="Cosmetics">
+ <class>SPDwarvenFighter</class>
+ <widget class="QDialog" name="SPDwarvenFighter">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="Next">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>200</y>
+     <x>10</x>
+     <y>10</y>
      <width>75</width>
      <height>23</height>
     </rect>

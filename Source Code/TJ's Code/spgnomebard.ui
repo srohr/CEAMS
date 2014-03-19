@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>GnomeBardSP</class>
- <widget class="QDialog" name="GnomeBardSP">
+ <class>SPGnomeBard</class>
+ <widget class="QDialog" name="SPGnomeBard">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -16,8 +16,8 @@
   <widget class="QPushButton" name="Next">
    <property name="geometry">
     <rect>
-     <x>160</x>
-     <y>210</y>
+     <x>10</x>
+     <y>10</y>
      <width>75</width>
      <height>23</height>
     </rect>

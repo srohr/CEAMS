@@ -1,10 +1,10 @@
-#include "orcbarbariansp.h"
+#include "sporcbarbarian.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    OrcBarbarianSP w;
+    SPOrcBarbarian w;
     w.show();
 
     return a.exec();

@@ -1,5 +1,6 @@
 #include "equipment.h"
 #include "ui_equipment.h"
+//#include MainLoadout
 
 Equipment::Equipment(QWidget *parent) :
     QDialog(parent),
@@ -7,6 +8,7 @@ Equipment::Equipment(QWidget *parent) :
 {
     ui->setupUi(this);
     QWidget::showMaximized();
+    QWidget::setWindowTitle("Equipment");
 }
 
 Equipment::~Equipment()
@@ -16,5 +18,7 @@ Equipment::~Equipment()
 
 void Equipment::on_Save_clicked()
 {
-    //save all information into the database
+    //save everything to the database
+    //jump to main load out window
+    this->close();
 }

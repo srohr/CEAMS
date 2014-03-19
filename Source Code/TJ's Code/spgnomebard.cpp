@@ -1,13 +1,14 @@
-#include "gnomebardsp.h"
-#include "ui_gnomebardsp.h"
-#include "religion.h"
+#include "spgnomebard.h"
+#include "ui_spgnomebard.h"
+#include "choosereligion.h"
 
-GnomeBardSP::GnomeBardSP(QWidget *parent) :
+SPGnomeBard::SPGnomeBard(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::GnomeBardSP)
+    ui(new Ui::SPGnomeBard)
 {
     ui->setupUi(this);
     QWidget::showMaximized();
+    QWidget::setWindowTitle("Gnome-Bard SP");
     /*Studded Leather, Longsword, Lightcrossbow
      *if Dex > 13 Dodge, if Dex < 12 Improved Initiative
      *Spells Known: detect magic, ghost sound, light, read magic
@@ -19,15 +20,14 @@ GnomeBardSP::GnomeBardSP(QWidget *parent) :
     */
 }
 
-GnomeBardSP::~GnomeBardSP()
+SPGnomeBard::~SPGnomeBard()
 {
     delete ui;
 }
 
-void GnomeBardSP::on_Next_clicked()
+void SPGnomeBard::on_Next_clicked()
 {
-    //Set all new skills selected
-    Religion religion;
-    religion.setModal(true);
-    religion.exec();
+    religion = new ChooseReligion(this);
+    religion->show();
+    this->hide();
 }

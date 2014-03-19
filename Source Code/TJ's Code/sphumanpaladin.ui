@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Equipment</class>
- <widget class="QDialog" name="Equipment">
+ <class>SPHumanPaladin</class>
+ <widget class="QDialog" name="SPHumanPaladin">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="Save">
+  <widget class="QPushButton" name="Next">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Save</string>
+    <string>Next</string>
    </property>
   </widget>
  </widget>

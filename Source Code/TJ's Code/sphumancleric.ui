@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>OrcBarbarianSP</class>
- <widget class="QDialog" name="OrcBarbarianSP">
+ <class>SPHumanCleric</class>
+ <widget class="QDialog" name="SPHumanCleric">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,13 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>OrcBarbarianSP</string>
+   <string>Dialog</string>
   </property>
   <widget class="QPushButton" name="Next">
    <property name="geometry">
     <rect>
-     <x>140</x>
-     <y>210</y>
+     <x>10</x>
+     <y>10</y>
      <width>75</width>
      <height>23</height>
     </rect>
@@ -27,7 +27,6 @@
    </property>
   </widget>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
