@@ -28,7 +28,16 @@ SOURCES += main.cpp\
     sphumanfighter.cpp \
     sphumanmonk.cpp \
     sphumanpaladin.cpp \
-    sphumansorcerer.cpp
+    sphumansorcerer.cpp \
+    Character.cpp \
+    Class.cpp \
+    DBIO.cpp \
+    ddmath.cpp \
+    Feat.cpp \
+    Item.cpp \
+    Skill.cpp \
+    Spell.cpp \
+    sqlite3.c
 
 HEADERS  += sporcbarbarian.h \
     choosereligion.h \
@@ -45,7 +54,21 @@ HEADERS  += sporcbarbarian.h \
     sphumanfighter.h \
     sphumanmonk.h \
     sphumanpaladin.h \
-    sphumansorcerer.h
+    sphumansorcerer.h \
+    Alignment.h \
+    Character.h \
+    Class.h \
+    DBIO.h \
+    ddmath.h \
+    equipment.cpp.autosave \
+    Feat.h \
+    Item.h \
+    Race.h \
+    Religion.h \
+    Skill.h \
+    Spell.h \
+    sqlite3.h \
+    sqlite3ext.h
 
 FORMS    += sporcbarbarian.ui \
     choosereligion.ui \
@@ -63,3 +86,7 @@ FORMS    += sporcbarbarian.ui \
     sphumanmonk.ui \
     sphumanpaladin.ui \
     sphumansorcerer.ui
+
+OTHER_FILES += \
+    CEAMS.db3 \
+    StartingPackage.pro.user
