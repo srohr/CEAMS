@@ -99,7 +99,7 @@
           <enum>QTabWidget::Rounded</enum>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="tab">
           <attribute name="title">
@@ -216,7 +216,7 @@
               </size>
              </property>
              <property name="text">
-              <string>PushButton</string>
+              <string>Buy</string>
              </property>
             </widget>
            </item>
@@ -229,7 +229,7 @@
               </size>
              </property>
              <property name="text">
-              <string>PushButton</string>
+              <string>Sell</string>
              </property>
             </widget>
            </item>
@@ -249,7 +249,7 @@
               </size>
              </property>
              <property name="text">
-              <string>PushButton</string>
+              <string>+ Item</string>
              </property>
             </widget>
            </item>
@@ -262,7 +262,7 @@
               </size>
              </property>
              <property name="text">
-              <string>PushButton</string>
+              <string>- Item</string>
              </property>
             </widget>
            </item>
@@ -282,7 +282,7 @@
               </size>
              </property>
              <property name="text">
-              <string>PushButton</string>
+              <string>Main Menu</string>
              </property>
             </widget>
            </item>
