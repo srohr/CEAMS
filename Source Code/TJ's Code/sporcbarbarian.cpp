@@ -9,6 +9,7 @@ SPOrcBarbarian::SPOrcBarbarian(QWidget *parent) :
     ui->setupUi(this);
     QWidget::showMaximized();
     QWidget::setWindowTitle("Orc-Barbarian SP");
+    Load = DBLoad();
     /*Orcs get Studded Leather, GreatAxe, ShortBow, and Dagger
      * Feat Gained Weapon Focus
      * Gear gained backpack, waterskin, on day trail rations, bedroll,
@@ -20,6 +21,11 @@ SPOrcBarbarian::SPOrcBarbarian(QWidget *parent) :
 SPOrcBarbarian::~SPOrcBarbarian()
 {
     delete ui;
+}
+
+DBLS SPOrcBarbarian::GetLoad()
+{
+    return Load;
 }
 
 void SPOrcBarbarian::on_Next_clicked()

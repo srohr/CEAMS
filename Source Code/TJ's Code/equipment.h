@@ -2,6 +2,7 @@
 #define EQUIPMENT_H
 
 #include <QDialog>
+#include <QtGui>
 
 namespace Ui {
 class Equipment;
@@ -17,6 +18,8 @@ public:
 
 private slots:
     void on_Save_clicked();
+
+    void on_ItemsAvailable_clicked(const QModelIndex &index);
 
 private:
     Ui::Equipment *ui;
