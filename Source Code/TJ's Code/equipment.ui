@@ -72,6 +72,12 @@
        </property>
        <item>
         <widget class="QTabWidget" name="ShopTab">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Ignored">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="minimumSize">
           <size>
            <width>150</width>
@@ -101,40 +107,47 @@
          <property name="currentIndex">
           <number>0</number>
          </property>
-         <widget class="QWidget" name="tab">
+         <widget class="QWidget" name="ShopItems">
           <attribute name="title">
-           <string>Tab 1</string>
+           <string>Items</string>
           </attribute>
-          <widget class="QListWidget" name="ItemsAvailable">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>251</width>
-             <height>421</height>
-            </rect>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_6">
+           <item>
+            <widget class="QListWidget" name="ItemsAvailable">
+             <property name="contextMenuPolicy">
+              <enum>Qt::NoContextMenu</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
-         <widget class="QWidget" name="tab_2">
+         <widget class="QWidget" name="ShopArmor">
           <attribute name="title">
-           <string>Tab 2</string>
+           <string>Armor</string>
           </attribute>
-          <widget class="QListWidget" name="listWidget">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>251</width>
-             <height>421</height>
-            </rect>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <item>
+            <widget class="QListWidget" name="AvailableArmor"/>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="ShopWeapon">
+          <attribute name="title">
+           <string>Weapon</string>
+          </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <item>
+            <widget class="QListWidget" name="AvailableWeapons"/>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
+         <property name="spacing">
+          <number>20</number>
+         </property>
          <item>
           <widget class="QLabel" name="InfoTitle">
            <property name="maximumSize">
@@ -154,7 +167,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="ItemInfoLabel">
            <property name="minimumSize">
             <size>
              <width>150</width>
@@ -187,20 +200,27 @@
           </widget>
          </item>
          <item>
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
+          <widget class="QLabel" name="GoldAmount">
+           <property name="maximumSize">
             <size>
-             <width>20</width>
-             <height>50</height>
+             <width>16777215</width>
+             <height>30</height>
             </size>
            </property>
-          </spacer>
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
+           </property>
+           <property name="text">
+            <string>Gold: </string>
+           </property>
+          </widget>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout">
@@ -304,7 +324,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QTabWidget" name="ShopTab_2">
+        <widget class="QTabWidget" name="OwnedTab">
          <property name="minimumSize">
           <size>
            <width>150</width>
@@ -332,37 +352,37 @@
           <enum>QTabWidget::Rounded</enum>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
-         <widget class="QWidget" name="tab_3">
+         <widget class="QWidget" name="OwnedItems">
           <attribute name="title">
-           <string>Tab 1</string>
+           <string>Items</string>
           </attribute>
-          <widget class="QListWidget" name="listWidget_2">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>261</width>
-             <height>421</height>
-            </rect>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_8">
+           <item>
+            <widget class="QListWidget" name="OwnedItems"/>
+           </item>
+          </layout>
          </widget>
-         <widget class="QWidget" name="tab_4">
+         <widget class="QWidget" name="OwnedArmor">
           <attribute name="title">
-           <string>Tab 2</string>
+           <string>Armor</string>
           </attribute>
-          <widget class="QListWidget" name="listWidget_3">
-           <property name="geometry">
-            <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>261</width>
-             <height>421</height>
-            </rect>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_9">
+           <item>
+            <widget class="QListWidget" name="OwnedArmor"/>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="OwnedWeapon">
+          <attribute name="title">
+           <string>Weapon</string>
+          </attribute>
+          <layout class="QHBoxLayout" name="horizontalLayout_11">
+           <item>
+            <widget class="QListWidget" name="OwnedWeapons"/>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>
@@ -372,6 +392,22 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>ShopTab</tabstop>
+  <tabstop>ItemsAvailable</tabstop>
+  <tabstop>AvailableArmor</tabstop>
+  <tabstop>AvailableWeapons</tabstop>
+  <tabstop>OwnedTab</tabstop>
+  <tabstop>OwnedItems</tabstop>
+  <tabstop>OwnedArmor</tabstop>
+  <tabstop>OwnedWeapons</tabstop>
+  <tabstop>BuyButton</tabstop>
+  <tabstop>SellButton</tabstop>
+  <tabstop>AddItem</tabstop>
+  <tabstop>MinusItem</tabstop>
+  <tabstop>MainMenuButton</tabstop>
+  <tabstop>Save</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
