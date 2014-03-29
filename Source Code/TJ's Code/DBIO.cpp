@@ -523,8 +523,9 @@ static int callback_items(void *NotUsed, int argc, char **argv, char **azColName
 	i.SetName(argv[0]);
 	i.SetCost(argv[1]);
 	i.SetWeight(argv[2]);
-	i.SetDescription(argv[3]);
-	i.SetType(argv[4]);
+	i.SetType(argv[3]);
+	i.SetDescription(argv[4]);
+	
 
 	items_V.push_back(i);
 	return 0;

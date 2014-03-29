@@ -7,7 +7,7 @@ using namespace std;
 
 int GetPoints(string fn, int var)
 {
-	int i = 0;
+    //int i = 0;
 	int ret;
 	int v1, v2;
 
