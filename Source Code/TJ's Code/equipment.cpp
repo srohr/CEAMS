@@ -7,7 +7,6 @@
 #include "Character.h"
 #include <QListWidget>
 #include <QtGui>
-//#include "sporcbarbarian.h"
 
 Equipment::Equipment(QWidget *parent) :
     QDialog(parent),
@@ -586,13 +585,23 @@ void Equipment::on_OwnedWeapons_clicked(const QModelIndex &index)
         }
     }
 }
-
+//-------------------------------------- +Item Button -------------------------------
 void Equipment::on_AddItem_clicked()
 {
-    ui->OwnedItems1->addItem(ui->ItemsAvailable->currentItem()->text());
+    if(ui->ShopTab->currentIndex() == 0)
+        ui->OwnedItems1->addItem(ui->ItemsAvailable->currentItem()->text());
+    else if(ui->ShopTab->currentIndex() == 1)
+        ui->OwnedArmor1->addItem(ui->AvailableArmor->currentItem()->text());
+    else if(ui->ShopTab->currentIndex() == 2)
+        ui->OwnedWeapons->addItem(ui->AvailableWeapons->currentItem()->text());
 }
-
+//-------------------------------------- -Item Button -------------------------------
 void Equipment::on_MinusItem_clicked()
 {
-    ui->OwnedItems1->takeItem(ui->OwnedItems1->row(ui->OwnedItems1->currentItem()));
+    if(ui->OwnedTab->currentIndex() == 0)
+        ui->OwnedItems1->takeItem(ui->OwnedItems1->row(ui->OwnedItems1->currentItem()));
+    else if(ui->OwnedTab->currentIndex() == 1)
+        ui->OwnedArmor1->takeItem(ui->OwnedArmor1->row(ui->OwnedArmor1->currentItem()));
+    else if(ui->OwnedTab->currentIndex() == 2)
+        ui->OwnedWeapons->takeItem(ui->OwnedWeapons->row(ui->OwnedWeapons->currentItem()));
 }

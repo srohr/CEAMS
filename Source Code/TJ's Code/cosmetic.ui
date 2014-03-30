@@ -96,12 +96,66 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_2">
+            <widget class="QLineEdit" name="NameLine">
              <property name="maximumSize">
               <size>
                <width>300</width>
                <height>25</height>
               </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_4">
+           <item>
+            <widget class="QLabel" name="Gender">
+             <property name="maximumSize">
+              <size>
+               <width>125</width>
+               <height>25</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Gender:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="RadioMale">
+             <property name="font">
+              <font>
+               <pointsize>11</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Male</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QRadioButton" name="RadioFemale">
+             <property name="font">
+              <font>
+               <pointsize>11</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Female</string>
              </property>
             </widget>
            </item>
@@ -131,24 +185,10 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit">
+            <widget class="QLineEdit" name="AgeLine">
              <property name="maximumSize">
               <size>
                <width>300</width>
-               <height>25</height>
-              </size>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <widget class="QLabel" name="Gender">
-             <property name="maximumSize">
-              <size>
-               <width>125</width>
                <height>25</height>
               </size>
              </property>
@@ -156,22 +196,6 @@
               <font>
                <pointsize>12</pointsize>
               </font>
-             </property>
-             <property name="text">
-              <string>Gender:</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="lineEdit_3">
-             <property name="maximumSize">
-              <size>
-               <width>300</width>
-               <height>25</height>
-              </size>
              </property>
             </widget>
            </item>
@@ -201,12 +225,17 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_4">
+            <widget class="QLineEdit" name="HeightLine">
              <property name="maximumSize">
               <size>
                <width>300</width>
                <height>25</height>
               </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
              </property>
             </widget>
            </item>
@@ -273,12 +302,17 @@
             </layout>
            </item>
            <item>
-            <widget class="QPlainTextEdit" name="plainTextEdit">
+            <widget class="QPlainTextEdit" name="TextBio">
              <property name="minimumSize">
               <size>
                <width>300</width>
                <height>300</height>
               </size>
+             </property>
+             <property name="font">
+              <font>
+               <pointsize>12</pointsize>
+              </font>
              </property>
             </widget>
            </item>
@@ -287,13 +321,29 @@
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_6">
            <item>
+            <widget class="QPushButton" name="MainMenu">
+             <property name="maximumSize">
+              <size>
+               <width>125</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Main Menu</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="horizontalSpacer_2">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Expanding</enum>
+             </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>298</width>
+               <width>300</width>
                <height>20</height>
               </size>
              </property>
@@ -301,6 +351,12 @@
            </item>
            <item>
             <widget class="QPushButton" name="Next">
+             <property name="maximumSize">
+              <size>
+               <width>125</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="text">
               <string>Next</string>
              </property>
