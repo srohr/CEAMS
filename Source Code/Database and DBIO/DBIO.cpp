@@ -1545,7 +1545,7 @@ DBLS DBLoad()
 	LS.feat_V = LoadFeats();
 	LS.item_V = LoadItems();
 	LS.race_V = LoadRaces();
-	//LS.religion_V = LoadReligions();
+	LS.religion_V = LoadReligions();
 	LS.skill_V = LoadSkills();
 	LS.spell_V = LoadSpells();
 	LS.weapon_V = LoadWeapons();

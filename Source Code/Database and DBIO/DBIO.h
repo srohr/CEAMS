@@ -27,7 +27,7 @@ struct DBLS
 	vector<Feat> *feat_V;
 	vector<Item> *item_V;
 	vector<Race> *race_V;
-	//vector<Religion> *religion_V;
+	vector<Religion> *religion_V;
 	vector<Skill> *skill_V;
 	vector<Spell> *spell_V;
 	vector<Weapon> *weapon_V;
