@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include "equipment.h"
+#include "DBIO.h"
+#include "Character.h"
 
 namespace Ui {
 class Cosmetic;
@@ -14,6 +16,7 @@ class Cosmetic : public QDialog
 
 public:
     explicit Cosmetic(QWidget *parent = 0);
+    DBLS GetLoad();
     ~Cosmetic();
 
 private slots:
@@ -22,6 +25,7 @@ private slots:
 private:
     Ui::Cosmetic *ui;
     Equipment *equipment;
+    DBLS Load;
 };
 
 #endif // COSMETIC_H
