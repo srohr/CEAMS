@@ -2,6 +2,7 @@
 #include <string>
 #include "Character.h"
 #include "ddmath.h"
+#include <sstream>
 
 #pragma once;
 
@@ -40,7 +41,14 @@ Character::Character(Class c, Race r, vector<Character> chars)
 
 	level = 1;
 	totalExp = 0;
+	int n, d, x;
+	char garbage;
+	stringstream ss;
+	ss << c.GetStartingGold();
 	
+	ss >> n >> garbage >> d >> garbage >> x;
+	
+	gold = Roll(n, d) * x;
 	availableSkillPoints = GetPoints(c.GetFirstLevelUpPoints(), intelligence);
 
 	totalSkillPoints = availableSkillPoints;

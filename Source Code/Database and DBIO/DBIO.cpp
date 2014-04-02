@@ -1530,6 +1530,34 @@ vector<Spell>* LoadSpells()
 	}
 }*/
 
+bool AddToCEAMS(Religion r)
+{
+	string query_s = "INSERT INTO `Religion` (`Deity`, `ReligionDescription`, `Alignment`) VALUES '";
+	
+	query_s += r.GetDietyName(); 			query_s += "', '";
+	query_s += r.GetDescription();			query_s += "', '";
+	query_s += r.GetSuggestedAlignment();	query_s += "';";
+	
+	if (rc == SQLITE_OK) //Check connection status.
+		if (sqlite3_exec(db, query_s.c_str(), callback, 0, &zErrMsg) == SQLITE_OK)
+			return true;
+			
+	return false;
+}
+
+bool RemoveFromCEAMS(Religion r)
+{
+	string query_s = "DELETE FROM `Religion` WHERE `Deity` = '";
+	
+	query_s += r.GetDietyName(); 			query_s += "';";
+	
+	if (rc == SQLITE_OK) //Check connection status.
+		if (sqlite3_exec(db, query_s.c_str(), callback, 0, &zErrMsg) == SQLITE_OK)
+			return true;
+			
+	return false;
+}
+
 DBLS DBLoad()
 {
 	//clock_t t1, t2;
