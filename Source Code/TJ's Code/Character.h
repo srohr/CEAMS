@@ -66,8 +66,8 @@ public:
 	void SetGender(string s)				{gender = s;}
 	string GetCosmetics()					{return cosmetics;}
 	void SetCosmetics(string v)				{cosmetics = v;}
-	int GetAge()							{return age;}
-	void SetAge(int i)						{age = i;}
+	string GetAge()							{return age;}
+	void SetAge(string i)					{age = i;}
 	string GetHeight()						{return height;}
 	void SetHeight(string i)				{height = i;}
 	int GetCharisma()						{return charisma;}
@@ -137,7 +137,7 @@ private:
 		availableSkillPoints;
 	string gender;
 	string cosmetics;
-	int age;
+	string age;
 	string height;
 	int charisma,
 		constitution,

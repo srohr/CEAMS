@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>956</width>
-    <height>601</height>
+    <width>990</width>
+    <height>591</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -25,9 +25,9 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_5">
+  <layout class="QVBoxLayout" name="verticalLayout_8">
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_4">
+    <layout class="QVBoxLayout" name="verticalLayout_7">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_8">
        <property name="leftMargin">
@@ -76,9 +76,6 @@
      </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_6">
-       <property name="spacing">
-        <number>65</number>
-       </property>
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_6">
          <property name="bottomMargin">
@@ -105,6 +102,12 @@
          </item>
          <item>
           <widget class="QListWidget" name="PremadeDietiesList">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>0</height>
+            </size>
+           </property>
            <property name="maximumSize">
             <size>
              <width>300</width>
@@ -112,6 +115,52 @@
             </size>
            </property>
           </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>17</width>
+             <height>25</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QTextEdit" name="TextGodInfo">
+           <property name="maximumSize">
+            <size>
+             <width>500</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>17</width>
+             <height>25</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>
@@ -326,13 +375,16 @@
                  <property name="text">
                   <string>Lawful Good</string>
                  </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
                  <property name="autoRepeatDelay">
                   <number>299</number>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="LawfulNeutralButton">
+                <widget class="QPushButton" name="TrueGoodButton">
                  <property name="minimumSize">
                   <size>
                    <width>100</width>
@@ -352,6 +404,9 @@
                  </property>
                  <property name="text">
                   <string>Lawful Neutral</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
                  </property>
                  <property name="autoRepeatDelay">
                   <number>299</number>
@@ -379,6 +434,9 @@
                  </property>
                  <property name="text">
                   <string>Caotic Good</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
                  </property>
                  <property name="autoRepeatDelay">
                   <number>299</number>
@@ -417,7 +475,7 @@
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="LawfulNeutralButton_2">
+                <widget class="QPushButton" name="LawfulNeutralButton">
                  <property name="minimumSize">
                   <size>
                    <width>100</width>
@@ -437,6 +495,9 @@
                  </property>
                  <property name="text">
                   <string>Lawful Neutral</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
                  </property>
                  <property name="autoRepeatDelay">
                   <number>299</number>
@@ -465,6 +526,9 @@
                  <property name="text">
                   <string>True Neutral</string>
                  </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
                  <property name="autoRepeatDelay">
                   <number>299</number>
                  </property>
@@ -491,6 +555,9 @@
                  </property>
                  <property name="text">
                   <string>Caotic Neutral</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
                  </property>
                  <property name="autoRepeatDelay">
                   <number>299</number>
@@ -550,6 +617,9 @@
                  <property name="text">
                   <string>Lawful Evil</string>
                  </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
                  <property name="autoRepeatDelay">
                   <number>299</number>
                  </property>
@@ -577,6 +647,9 @@
                  <property name="text">
                   <string>True Evil</string>
                  </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
                  <property name="autoRepeatDelay">
                   <number>299</number>
                  </property>
@@ -603,6 +676,9 @@
                  </property>
                  <property name="text">
                   <string>Caotic Evil</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
                  </property>
                  <property name="autoRepeatDelay">
                   <number>299</number>
@@ -656,6 +732,8 @@
    </item>
   </layout>
   <zorder></zorder>
+  <zorder>verticalSpacer_2</zorder>
+  <zorder>verticalSpacer</zorder>
  </widget>
  <resources/>
  <connections/>

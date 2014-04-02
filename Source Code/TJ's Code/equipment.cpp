@@ -313,7 +313,7 @@ void Equipment::on_AvailableWeapons_clicked(const QModelIndex &index)
         }
     }
 }
-//---------------------------------------------------------------------------------------------------------
+//-------------Cant get it to link up and display--------------------------------------------------------------------------------------------
 void Equipment::on_OwnedItems_clicked(const QModelIndex &index)
 {
     std::vector<Item> item_V = *this->GetLoad().item_V;

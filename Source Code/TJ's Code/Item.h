@@ -10,7 +10,7 @@ public:
 	void SetName(string s)					{name = s;}
 	string GetDescription()					{return description;}
 	void SetDescription(string s)			{description = s;}
-    string GetCost()						{return cost;}
+	string GetCost()						{return cost;}
 	void SetCost(string i)					{cost = i;}
 	string GetWeight()						{return weight;}
 	void SetWeight(string i)				{weight = i;}
