@@ -356,7 +356,7 @@ static int callback_charCosmetics(void *NotUsed, int argc, char **argv, char **a
 	if(found)
 	{
 		characters_V[lcv].SetGender(argv[1]);
-		characters_V[lcv].SetAge(stoi(argv[2]));
+        characters_V[lcv].SetAge((argv[2]));
 		characters_V[lcv].SetHeight(argv[3]);
 		characters_V[lcv].SetCosmetics(argv[4]);
 	}
