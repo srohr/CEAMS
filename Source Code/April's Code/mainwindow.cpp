@@ -12,6 +12,8 @@
 #include <QFutureWatcher>
 #include <QtConcurrent/QtConcurrent>
 
+DBLS newDB = DBLoad();
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -41,10 +43,9 @@ MainWindow::MainWindow(QWidget *parent) :
     this->progBar->show();
 
     // load the database
-    this->newDB = DBLoad();
-    while(this->newDB.loadedOkay == false)
+    while(newDB.loadedOkay == false)
         this->progBar->setVisible(true);
-    if(this->newDB.loadedOkay == true) {
+    if(newDB.loadedOkay == true) {
         cout << "database loaded successfully\n";
         this->progBar->setVisible(false);
         loadingLabel->setVisible(false);
@@ -56,4 +57,5 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+
 }

@@ -20,12 +20,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     QLabel *label;
     QProgressBar *progBar;
-    DBLS newDB;
-    QPushButton *pushButton;
     ~MainWindow();
 
 private slots:
-    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
