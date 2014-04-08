@@ -105,8 +105,8 @@ void armor_edit_new::on_pushButton_clicked()
         //cout << "AddToCEAMS has returned\n";
 
         //Close window and signal success
-        success* goodWindow = new success;
-        goodWindow->show();
+        //success* goodWindow = new success;
+       // goodWindow->show();
         this->close();
     }
     else

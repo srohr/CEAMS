@@ -20,6 +20,8 @@ private slots:
 
     void on_newButton_clicked();
 
+    void on_editButton_clicked();
+
 private:
     Ui::addCustom *ui;
 };

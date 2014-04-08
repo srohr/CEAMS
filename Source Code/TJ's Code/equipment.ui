@@ -111,7 +111,7 @@
           <enum>QTabWidget::Rounded</enum>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="ShopItems">
           <attribute name="title">
@@ -188,8 +188,8 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>168</width>
-              <height>169</height>
+              <width>172</width>
+              <height>172</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -383,7 +383,7 @@
           <enum>QTabWidget::Rounded</enum>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="OwnedItems">
           <attribute name="title">

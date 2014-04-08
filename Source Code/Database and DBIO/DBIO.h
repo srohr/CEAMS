@@ -90,34 +90,6 @@ vector<Character>* LoadCharacters();
 
 bool AddToCEAMS(learnedBy);
 
-/*
-vector<Spell>* LoadSpells();
-vector<Spell>* LoadSpells(string);
-
-vector<Race>* LoadRaces();
-vector<Race>* LoadRaces(string);
-
-vector<Class>* LoadClasses();
-vector<Class>* LoadClasses(string);
-
-vector<Feat>* LoadFeats();
-vector<Feat>* LoadFeats(string);
-
-vector<Item>* LoadItems();
-vector<Item>* LoadItems(string);
-
-vector<Weapon>* LoadWeapons();
-vector<Weapon>* LoadWeapons(string);
-
-vector<Armor>* LoadArmors();
-vector<Armor>* LoadArmors(string);
-
-vector<Skill>* LoadSkills();
-vector<Skill>* LoadSkills(string);
-
-vector<Character>* LoadCharacters();
-vector<Character>* LoadCharacters(string);
-*/
 
 
 

@@ -29,7 +29,10 @@ void spell_new::on_pushButton_2_clicked()
 
 void spell_new::on_pushButton_clicked()
 {
-    cout << "Number of spells in database: " << newDB.spell_V->size() << endl;
+    vector<Spell>::iterator itr = newDB.spell_V->begin();
+    //cout << "Number of spells in database: " << newDB.spell_V->size() << endl
+            //<< "First spell: " << itr->GetName() << endl;
+
     string name = ui->nameBox->toPlainText().toStdString(),
             type = ui->typeBox->toPlainText().toStdString(),
             savingThrow = ui->savingThrowBox->toPlainText().toStdString(),

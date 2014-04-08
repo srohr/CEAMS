@@ -127,8 +127,10 @@ private:
 		totalExp;
 
 	double gold;
+	
 	int maxHealth,
 		health;
+		
 	string armorClass;
 	string savingThrow;
 	int attackBonus;

@@ -356,7 +356,7 @@ static int callback_charCosmetics(void *NotUsed, int argc, char **argv, char **a
 	if(found)
 	{
 		characters_V[lcv].SetGender(argv[1]);
-		characters_V[lcv].SetAge((argv[2]));
+		characters_V[lcv].SetAge(stoi(argv[2]));
 		characters_V[lcv].SetHeight(argv[3]);
 		characters_V[lcv].SetCosmetics(argv[4]);
 	}
@@ -523,9 +523,8 @@ static int callback_items(void *NotUsed, int argc, char **argv, char **azColName
 	i.SetName(argv[0]);
 	i.SetCost(argv[1]);
 	i.SetWeight(argv[2]);
-	i.SetType(argv[3]);
-	i.SetDescription(argv[4]);
-	
+	i.SetDescription(argv[3]);
+	i.SetType(argv[4]);
 
 	items_V.push_back(i);
 	return 0;
@@ -614,7 +613,7 @@ vector<Spell>* LoadSpells()
 	while (!spells_V.empty())
 		spells_V.pop_back();
 
-	string query_s = "SELECT * FROM `Spells` ORDER BY `SpellName` ASC;";
+	string query_s = "SELECT * FROM `Spells`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_spell, 0, &zErrMsg) == SQLITE_OK)
 		return ptr;
 	else 
@@ -630,7 +629,7 @@ vector<Character>* LoadCharacter()
 	while (!characters_V.empty())
 		characters_V.pop_back();
 
-	string query_s = "SELECT * FROM `Character` ORDER BY `CharacterID` ASC;";
+	string query_s = "SELECT * FROM `Character`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_character, 0, &zErrMsg) == SQLITE_OK){
 		query_s = "SELECT * FROM `Character_Class`;";
 		if (sqlite3_exec(db, query_s.c_str(), callback_charClasses, 0, &zErrMsg) == SQLITE_OK){
@@ -658,7 +657,7 @@ vector<Class>* LoadClasses()
 	while(!classes_V.empty())
 		classes_V.pop_back();
 
-	string query_s = "SELECT * FROM `Class` ORDER BY `ClassName` ASC;";
+	string query_s = "SELECT * FROM `Class`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_class, 0, &zErrMsg) == SQLITE_OK){
 		query_s = "SELECT * FROM `ClassFeatures`;";
 		if (sqlite3_exec(db, query_s.c_str(), callback_classFeatures, 0, &zErrMsg) == SQLITE_OK){
@@ -678,7 +677,7 @@ vector<Feat>* LoadFeats()
 	while(!feats_V.empty())
 		feats_V.pop_back();
 
-	string query_s = "SELECT * FROM `Feats`ORDER BY `FeatName` ASC;";
+	string query_s = "SELECT * FROM `Feats`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_feat, 0, &zErrMsg) == SQLITE_OK){
 		query_s = "SELECT * FROM `FeatPrerequisite`;";
 		if (sqlite3_exec(db, query_s.c_str(), callback_featPrereqs, 0, &zErrMsg) == SQLITE_OK)
@@ -695,7 +694,7 @@ vector<Item>* LoadItems()
 	while(!items_V.empty())
 		items_V.pop_back();
 
-	string query_s = "SELECT * FROM `Items` ORDER BY `ItemName` ASC;";
+	string query_s = "SELECT * FROM `Items`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_items, 0, &zErrMsg) == SQLITE_OK)
 		return ptr;
 
@@ -709,7 +708,7 @@ vector<Weapon>* LoadWeapons()
 	while(!weapons_V.empty())
 		weapons_V.pop_back();
 
-	string query_s = "SELECT * FROM `Weapons` ORDER BY `WeaponName` ASC;";
+	string query_s = "SELECT * FROM `Weapons`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_weapons, 0, &zErrMsg) == SQLITE_OK)
 		return ptr;
 
@@ -723,7 +722,7 @@ vector<Armor>* LoadArmors()
 	while(!armors_V.empty())
 		armors_V.pop_back();
 
-	string query_s = "SELECT * FROM `Armor` ORDER BY `ArmorName` ASC;";
+	string query_s = "SELECT * FROM `Armor`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_armors, 0, &zErrMsg) == SQLITE_OK)
 		return ptr;
 
@@ -737,7 +736,7 @@ vector<Alignment>* LoadAlignments()
 	while(!alignments_V.empty())
 		alignments_V.pop_back();
 
-	string query_s = "SELECT * FROM `Alignment` ORDER BY `AlignmentName` ASC;";
+	string query_s = "SELECT * FROM `Alignment`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_alignment, 0, &zErrMsg) == SQLITE_OK)
 		return ptr;
 
@@ -752,7 +751,7 @@ vector<Character>* LoadCharacters()
 	while(!characters_V.empty())
 		characters_V.pop_back();
 
-	string query_s = "SELECT * FROM `Character` ORDER BY `CharacterID` ASC;";
+	string query_s = "SELECT * FROM `Character`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_character, 0, &zErrMsg) == SQLITE_OK)
 		return ptr;
 
@@ -766,7 +765,7 @@ vector<Race>* LoadRaces()
 	while(!races_V.empty())
 		races_V.pop_back();
 
-	string query_s = "SELECT * FROM `Race` ORDER BY `RaceName` ASC;";
+	string query_s = "SELECT * FROM `Race`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_races, 0, &zErrMsg) == SQLITE_OK){
 		query_s = "SELECT * From `RaceLanguages`;";
 		if (sqlite3_exec(db, query_s.c_str(), callback_raceLanguages, 0, &zErrMsg) == SQLITE_OK)
@@ -783,7 +782,7 @@ vector<Religion>* LoadReligions()
 	while(!religions_V.empty())
 		religions_V.pop_back();
 
-	string query_s = "SELECT * FROM `Religion` ORDER BY `Deity` ASC;";
+	string query_s = "SELECT * FROM `Religion`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_religions, 0, &zErrMsg) == SQLITE_OK)
 			return ptr;			
 
@@ -797,7 +796,7 @@ vector<Skill>* LoadSkills()
 	while(!skills_V.empty())
 		skills_V.pop_back();
 
-	string query_s = "SELECT * FROM `Skills` ORDER BY `SkillName` ASC;";
+	string query_s = "SELECT * FROM `Skills`;";
 	if (sqlite3_exec(db, query_s.c_str(), callback_skill, 0, &zErrMsg) == SQLITE_OK)
 			return ptr;			
 
@@ -821,7 +820,7 @@ bool AddToCEAMS (Spell s)
 	query_s += s.GetRange();			query_s += "', '";
 	query_s += s.GetTarget();			query_s += "', '";
 	query_s += s.GetDuration();			query_s += "', '";
-	query_s += s.GetDescription();		query_s += "') ;";
+	query_s += s.GetDescription();		query_s += "');";
 	//SQL statement formed.
 
 	if (rc == SQLITE_OK) //Check connection status.
@@ -1163,7 +1162,7 @@ bool RemoveFromCEAMS (Weapon w)
 
 bool AddToCEAMS (Armor a)
 {
-	string query_s = "INSERT INTO `Armor` (`ArmorName`, `ArmorType`, `ArmorCost`, `ArmorWeight`, `SpeedHuman`, `SpeedDwarf`, `MaxDexterityBonus`, `ArmorCheckPenalty`, `ArcaneSpellFailure`, `ArmorBonus`, `Don`, `DonHastely`, `Remove`, `ArmorDescription`) VALUES ('";
+    string query_s = "INSERT INTO `Armor` (`ArmorName`, `Armor Type`, `ArmorCost`, `ArmorWeight`, `SpeedHuman`, `SpeedDwarf`, `MaxDexterityBonus`, `ArmorCheckPenalty`, `ArcaneSpellFailure`, `ArmorBonus`, `Don`, `DonHastely`, `Remove`, `ArmorDescription`) VALUES ('";
 	query_s += a.GetName();						query_s += "', '";
 	query_s += a.GetType();						query_s += "', '";
 	query_s += a.GetCost();						query_s += "', '";
@@ -1530,34 +1529,6 @@ vector<Spell>* LoadSpells()
 	}
 }*/
 
-bool AddToCEAMS(Religion r)
-{
-	string query_s = "INSERT INTO `Religion` (`Deity`, `ReligionDescription`, `Alignment`) VALUES '";
-	
-	query_s += r.GetDietyName(); 			query_s += "', '";
-	query_s += r.GetDescription();			query_s += "', '";
-	query_s += r.GetSuggestedAlignment();	query_s += "';";
-	
-	if (rc == SQLITE_OK) //Check connection status.
-		if (sqlite3_exec(db, query_s.c_str(), callback, 0, &zErrMsg) == SQLITE_OK)
-			return true;
-			
-	return false;
-}
-
-bool RemoveFromCEAMS(Religion r)
-{
-	string query_s = "DELETE FROM `Religion` WHERE `Deity` = '";
-	
-	query_s += r.GetDietyName(); 			query_s += "';";
-	
-	if (rc == SQLITE_OK) //Check connection status.
-		if (sqlite3_exec(db, query_s.c_str(), callback, 0, &zErrMsg) == SQLITE_OK)
-			return true;
-			
-	return false;
-}
-
 DBLS DBLoad()
 {
 	//clock_t t1, t2;
@@ -1573,10 +1544,13 @@ DBLS DBLoad()
 	LS.feat_V = LoadFeats();
 	LS.item_V = LoadItems();
 	LS.race_V = LoadRaces();
-	LS.religion_V = LoadReligions();
+	//LS.religion_V = LoadReligions();
 	LS.skill_V = LoadSkills();
 	LS.spell_V = LoadSpells();
 	LS.weapon_V = LoadWeapons();
+
+	vector<Item> i = *(LS.item_V);
+
 
 	if (LS.alignment_V == NULL)
 		LS.loadedOkay = false;

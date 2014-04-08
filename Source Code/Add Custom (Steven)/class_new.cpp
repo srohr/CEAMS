@@ -63,7 +63,7 @@ void class_new::on_pushButton_clicked()
     {
         tmp = "";
         tmp += startingGold1; tmp += 'd'; tmp += startingGold2;
-        tmp += '*'; tmp += startingGold3;
+        tmp += " x "; tmp += startingGold3;
 
         c.SetName(name);
         c.SetDescription(description);
